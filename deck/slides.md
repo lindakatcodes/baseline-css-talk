@@ -13,7 +13,7 @@ transition: slide-left
 class: text-center
 ---
 
-<!-- markdownlint-disable MD025 MD003 MD022 -->
+<!-- markdownlint-disable -->
 
 # Baseline Magic: The Art of Intent-Driven CSS
 
@@ -84,7 +84,7 @@ Tethered elements are the browser's job, not yours.
 Stop fighting the browser. Collaborate with it.
 
 ---
-
-## layout: center
+layout: center
+---
 
 # Connect with Me
