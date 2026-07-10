@@ -1,0 +1,191 @@
+[
+  {
+    "id": "spring-tonic-tea",
+    "name": "Spring Tonic Tea",
+    "form": "Tea",
+    "season": "spring",
+    "ingredientIds": ["nettle", "dandelion", "lemon-balm"],
+    "daysToMake": 3,
+    "daysRemaining": 2
+  },
+  {
+    "id": "dandelion-bitters",
+    "name": "Dandelion Bitters",
+    "form": "Tincture",
+    "season": "spring",
+    "ingredientIds": ["dandelion", "brandy"],
+    "daysToMake": 35,
+    "daysRemaining": 21
+  },
+  {
+    "id": "chickweed-salve",
+    "name": "Chickweed Salve",
+    "form": "Salve",
+    "season": "spring",
+    "ingredientIds": ["chickweed", "carrier-oil", "beeswax"],
+    "daysToMake": 24,
+    "daysRemaining": 20
+  },
+  {
+    "id": "violet-flower-honey",
+    "name": "Violet Flower Honey",
+    "form": "Honey Infusion",
+    "season": "spring",
+    "ingredientIds": ["violet", "raw-honey"],
+    "daysToMake": 7,
+    "daysRemaining": 4
+  },
+  {
+    "id": "lemon-balm-calm-tea",
+    "name": "Lemon Balm Calm Tea",
+    "form": "Tea",
+    "season": "spring",
+    "ingredientIds": ["lemon-balm", "violet"],
+    "daysToMake": 3,
+    "daysRemaining": 1
+  },
+  {
+    "id": "lavender-chamomile-sleep-tea",
+    "name": "Lavender Chamomile Sleep Tea",
+    "form": "Tea",
+    "season": "summer",
+    "ingredientIds": ["lavender", "chamomile"],
+    "daysToMake": 3,
+    "daysRemaining": 1
+  },
+  {
+    "id": "elderflower-cordial",
+    "name": "Elderflower Cordial",
+    "form": "Syrup",
+    "season": "summer",
+    "ingredientIds": ["elderflower", "raw-honey"],
+    "daysToMake": 3,
+    "daysRemaining": 3
+  },
+  {
+    "id": "calendula-salve",
+    "name": "Calendula Salve",
+    "form": "Salve",
+    "season": "summer",
+    "ingredientIds": ["calendula", "carrier-oil", "beeswax"],
+    "daysToMake": 21,
+    "daysRemaining": 5
+  },
+  {
+    "id": "yarrow-tincture",
+    "name": "Yarrow Tincture",
+    "form": "Tincture",
+    "season": "summer",
+    "ingredientIds": ["yarrow", "brandy"],
+    "daysToMake": 31,
+    "daysRemaining": 11
+  },
+  {
+    "id": "peppermint-digestive-tea",
+    "name": "Peppermint Digestive Tea",
+    "form": "Tea",
+    "season": "summer",
+    "ingredientIds": ["peppermint", "chamomile"],
+    "daysToMake": 3,
+    "daysRemaining": 3
+  },
+  {
+    "id": "lavender-infused-oil",
+    "name": "Lavender Infused Oil",
+    "form": "Infused Oil",
+    "season": "summer",
+    "ingredientIds": ["lavender", "carrier-oil"],
+    "daysToMake": 19,
+    "daysRemaining": 3
+  },
+  {
+    "id": "elderberry-immune-syrup",
+    "name": "Elderberry Immune Syrup",
+    "form": "Syrup",
+    "season": "autumn",
+    "ingredientIds": ["elderberry", "rosehip", "raw-honey"],
+    "daysToMake": 3,
+    "daysRemaining": 2
+  },
+  {
+    "id": "echinacea-root-tincture",
+    "name": "Echinacea Root Tincture",
+    "form": "Tincture",
+    "season": "autumn",
+    "ingredientIds": ["echinacea", "brandy"],
+    "daysToMake": 23,
+    "daysRemaining": 8
+  },
+  {
+    "id": "hawthorn-heart-tea",
+    "name": "Hawthorn Heart Tea",
+    "form": "Tea",
+    "season": "autumn",
+    "ingredientIds": ["hawthorn", "rosehip"],
+    "daysToMake": 2,
+    "daysRemaining": 1
+  },
+  {
+    "id": "sage-throat-tincture",
+    "name": "Sage Throat Tincture",
+    "form": "Tincture",
+    "season": "autumn",
+    "ingredientIds": ["sage", "brandy"],
+    "daysToMake": 26,
+    "daysRemaining": 2
+  },
+  {
+    "id": "rosehip-vitamin-oil",
+    "name": "Rosehip Vitamin Oil",
+    "form": "Infused Oil",
+    "season": "autumn",
+    "ingredientIds": ["rosehip", "carrier-oil"],
+    "daysToMake": 12,
+    "daysRemaining": 7
+  },
+  {
+    "id": "ginger-cinnamon-warming-tea",
+    "name": "Ginger Cinnamon Warming Tea",
+    "form": "Tea",
+    "season": "winter",
+    "ingredientIds": ["ginger", "cinnamon", "clove"],
+    "daysToMake": 3,
+    "daysRemaining": 1
+  },
+  {
+    "id": "licorice-cough-tea",
+    "name": "Licorice Cough Tea",
+    "form": "Tea",
+    "season": "winter",
+    "ingredientIds": ["licorice-root", "ginger"],
+    "daysToMake": 3,
+    "daysRemaining": 2
+  },
+  {
+    "id": "pine-resin-salve",
+    "name": "Pine Resin Salve",
+    "form": "Salve",
+    "season": "winter",
+    "ingredientIds": ["pine", "carrier-oil", "beeswax"],
+    "daysToMake": 22,
+    "daysRemaining": 1
+  },
+  {
+    "id": "clove-toothache-oil",
+    "name": "Clove Toothache Oil",
+    "form": "Infused Oil",
+    "season": "winter",
+    "ingredientIds": ["clove", "carrier-oil"],
+    "daysToMake": 15,
+    "daysRemaining": 5
+  },
+  {
+    "id": "cinnamon-tincture",
+    "name": "Cinnamon Tincture",
+    "form": "Tincture",
+    "season": "winter",
+    "ingredientIds": ["cinnamon", "brandy"],
+    "daysToMake": 28,
+    "daysRemaining": 22
+  }
+]

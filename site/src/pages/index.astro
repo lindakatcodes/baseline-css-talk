@@ -1,5 +1,14 @@
 ---
 import "../styles/index.css";
+import { getCollection } from "astro:content";
+
+const herbs = (await getCollection("herbs")).map((entry) => entry.data);
+const staples = (await getCollection("staples")).map((entry) => entry.data);
+const batches = (await getCollection("batches")).map((entry) => entry.data);
+
+const currentHerbs = herbs.filter((herb) => herb.season === 'summer');
+const currentIngredients = [...currentHerbs, ...staples];
+const currentBatches = batches.filter((batch) => batch.season === 'summer');
 ---
 
 <html lang="en">
@@ -18,14 +27,53 @@ import "../styles/index.css";
   <body>
     <header>
       <h1>Sage & Sundry Apothecary</h1>
-      <div class="current-season"><p>Summer</p></div>
+      <button class="current-season"><p>Summer</p></button>
     </header>
     <aside class="in-season">
-      <p>Currently in season:</p>
+      <h2>In season:</h2>
+      <ul>
+        {
+          herbs.map((herb) => (
+            <li>
+              <p>{herb.name}</p>
+              <p>{herb.freshnessDays}</p>
+            </li>
+          ))
+        }
+      </ul>
     </aside>
-    <main class="pantry">
-      <p>Ingredients</p>
-      <div class="active-batches"><p>Active Batches</p></div>
+    <main>
+      <section class="pantry">
+        <h2>Ingredients in Stock</h2>
+        <table>
+          <thead>
+            <th>Ingredient</th>
+            <th>Stock</th>
+            <th>Freshness</th>
+            <th>In Use</th>
+          </thead>
+          <tbody>
+            {currentIngredients.map((ingredient) => (
+              <tr>
+                <td>{ingredient.name}</td>
+                <td>{ingredient.stockLevel}</td>
+                <td>{ingredient.freshnessDays} Days</td>
+                <td>{} Batches</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+      <div class="active-batches">
+        <h2>Actively Cooking</h2>
+        {currentBatches.map((batch) => (
+          <div class="batch-card">
+            <p>{batch.name}</p>
+            <p>{batch.daysRemaining}</p>
+            <p>{"❯"}</p>
+          </div>
+        ))}
+      </div>
     </main>
   </body>
 </html>
