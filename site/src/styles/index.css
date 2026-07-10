@@ -3,6 +3,20 @@
 :root {
   --sans: "Figtree";
   --serif: "Yeseva One";
+  --text-color: "#2D1B11";
+  --text-color-light: "#E8D5C3";
+  --spring-primary-color: "#FFCAD4";
+  --spring-secondary-color: "#F193A1";
+  --spring-accent-color: "#ADC2B5";
+  --summer-primary-color: "#CCD8AB";
+  --summer-secondary-color: "#9AB257";
+  --summer-accent-color: "#EF5778";
+  --fall-primary-color: "#FFCC85";
+  --fall-secondary-color: "#DD5E03";
+  --fall-accent-color: "#5C4771";
+  --winter-primary-color: "#CAE9FF";
+  --winter-secondary-color: "#5FA8D3";
+  --winter-accent-color: "#9C89B8";
 }
 
 h1,
