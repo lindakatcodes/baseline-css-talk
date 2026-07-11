@@ -5,9 +5,10 @@
     "botanicalName": "Urtica dioica",
     "season": "spring",
     "description": "One of the first plants up in spring. Young leaves are prized in folk herbalism as a mineral-rich tonic — traditionally reached for when energy feels low after winter.",
-    "pantryForm": "Dried Leaf",
+    "pantryName": "Nettle Leaf",
     "stockLevel": 18,
-    "freshnessDays": 255
+    "freshnessDays": 75,
+    "harvestWindow": "peak"
   },
   {
     "id": "dandelion",
@@ -15,9 +16,10 @@
     "botanicalName": "Taraxacum officinale",
     "season": "spring",
     "description": "Every part is used. The root is roasted for a coffee-like tonic, while the leaf is bitter and traditionally taken to support digestion after a heavy winter diet.",
-    "pantryForm": "Dried Root",
+    "pantryName": "Dandelion Root",
     "stockLevel": 17,
-    "freshnessDays": 517
+    "freshnessDays": 90,
+    "harvestWindow": "soon"
   },
   {
     "id": "chickweed",
@@ -25,9 +27,10 @@
     "botanicalName": "Stellaria media",
     "season": "spring",
     "description": "A cooling, low-growing plant that carpets the garden in early spring. Its high moisture content makes it a favorite for soothing, cooling skin preparations.",
-    "pantryForm": "Dried Herb",
+    "pantryName": "Chickweed Herb",
     "stockLevel": 18,
-    "freshnessDays": 137
+    "freshnessDays": 60,
+    "harvestWindow": "peak"
   },
   {
     "id": "violet",
@@ -35,9 +38,10 @@
     "botanicalName": "Viola odorata",
     "season": "spring",
     "description": "Shade-loving and fleeting — the flowers only last a few weeks. Both leaf and blossom are gentle enough for daily use and lend a soft, floral note.",
-    "pantryForm": "Dried Flower",
+    "pantryName": "Sweet Violet Flower",
     "stockLevel": 8,
-    "freshnessDays": 166
+    "freshnessDays": 60,
+    "harvestWindow": "fading"
   },
   {
     "id": "lemon-balm",
@@ -45,9 +49,10 @@
     "botanicalName": "Melissa officinalis",
     "season": "spring",
     "description": "A member of the mint family that comes up fast and fragrant in spring. Bruise a leaf and the citrus scent is unmistakable — long used to take the edge off a stressful day.",
-    "pantryForm": "Dried Leaf",
+    "pantryName": "Lemon Balm Leaf",
     "stockLevel": 16,
-    "freshnessDays": 180
+    "freshnessDays": 75,
+    "harvestWindow": "soon"
   },
   {
     "id": "lavender",
@@ -55,9 +60,10 @@
     "botanicalName": "Lavandula angustifolia",
     "season": "summer",
     "description": "Harvested just as the buds open, before the oils peak and start to fade in the heat. The scent alone is often enough to slow a room down.",
-    "pantryForm": "Dried Bud",
+    "pantryName": "Lavender Buds",
     "stockLevel": 22,
-    "freshnessDays": 128
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "chamomile",
@@ -65,9 +71,10 @@
     "botanicalName": "Matricaria chamomilla",
     "season": "summer",
     "description": "Small daisy-like flowers picked at the height of summer. A gentle, apple-scented herb reached for at the end of the day, or to settle a fussy stomach.",
-    "pantryForm": "Dried Flower",
+    "pantryName": "Chamomile Flowers",
     "stockLevel": 20,
-    "freshnessDays": 122
+    "freshnessDays": 60,
+    "harvestWindow": "peak"
   },
   {
     "id": "elderflower",
@@ -75,9 +82,10 @@
     "botanicalName": "Sambucus nigra",
     "season": "summer",
     "description": "The creamy flower clusters bloom for a short window in early summer, well before the berries form in autumn. Traditionally taken at the first sign of a summer cold.",
-    "pantryForm": "Dried Flower",
+    "pantryName": "Elderflower",
     "stockLevel": 3,
-    "freshnessDays": 216
+    "freshnessDays": 75,
+    "harvestWindow": "fading"
   },
   {
     "id": "calendula",
@@ -85,9 +93,10 @@
     "botanicalName": "Calendula officinalis",
     "season": "summer",
     "description": "Bright orange petals that keep blooming right through the hottest weeks. A shop staple for skin-soothing salves — reliable, cheerful, and easy to dry well.",
-    "pantryForm": "Dried Petal",
+    "pantryName": "Calendula Petals",
     "stockLevel": 22,
-    "freshnessDays": 145
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "yarrow",
@@ -95,9 +104,10 @@
     "botanicalName": "Achillea millefolium",
     "season": "summer",
     "description": "A feathery-leaved plant found at the edge of meadows in midsummer. Long carried by herbalists for minor cuts and scrapes, hence the old nickname 'woundwort.'",
-    "pantryForm": "Dried Flowering Top",
+    "pantryName": "Yarrow Flowering Tops",
     "stockLevel": 17,
-    "freshnessDays": 205
+    "freshnessDays": 90,
+    "harvestWindow": "soon"
   },
   {
     "id": "peppermint",
@@ -105,9 +115,10 @@
     "botanicalName": "Mentha piperita",
     "season": "summer",
     "description": "Grows aggressively once summer heat sets in — most herbalists cut it back several times a season just to keep it contained. Cooling and reliably good for the stomach.",
-    "pantryForm": "Dried Leaf",
+    "pantryName": "Peppermint Leaf",
     "stockLevel": 4,
-    "freshnessDays": 207
+    "freshnessDays": 75,
+    "harvestWindow": "peak"
   },
   {
     "id": "elderberry",
@@ -115,9 +126,10 @@
     "botanicalName": "Sambucus nigra",
     "season": "autumn",
     "description": "The same plant as summer's elderflower, now heavy with dark purple berries. Always cooked before use — one of the most requested immune-support ingredients in the shop.",
-    "pantryForm": "Dried Berry",
+    "pantryName": "Elderberries",
     "stockLevel": 20,
-    "freshnessDays": 309
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "rosehip",
@@ -125,9 +137,10 @@
     "botanicalName": "Rosa canina",
     "season": "autumn",
     "description": "The fruit left behind after the roses fade, sweetest once picked after the season's first light frost. A tart, vitamin-rich staple for the darker months ahead.",
-    "pantryForm": "Dried Hip",
+    "pantryName": "Rosehips",
     "stockLevel": 4,
-    "freshnessDays": 225
+    "freshnessDays": 90,
+    "harvestWindow": "soon"
   },
   {
     "id": "echinacea",
@@ -135,9 +148,10 @@
     "botanicalName": "Echinacea purpurea",
     "season": "autumn",
     "description": "The root is dug once the flowers have died back and the plant's energy has moved underground for winter — considered the most potent part of the plant.",
-    "pantryForm": "Dried Root",
+    "pantryName": "Echinacea Root",
     "stockLevel": 18,
-    "freshnessDays": 540
+    "freshnessDays": 90,
+    "harvestWindow": "soon"
   },
   {
     "id": "hawthorn",
@@ -145,9 +159,10 @@
     "botanicalName": "Crataegus monogyna",
     "season": "autumn",
     "description": "Deep red berries that ripen on hedgerows in early autumn. A gentle, long-used herb for supporting the heart, both literally and in the old folk sense.",
-    "pantryForm": "Dried Berry",
+    "pantryName": "Hawthorn Berries",
     "stockLevel": 14,
-    "freshnessDays": 280
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "sage",
@@ -155,9 +170,10 @@
     "botanicalName": "Salvia officinalis",
     "season": "autumn",
     "description": "Cut back hard before the first frost, both to preserve the harvest and to keep the plant healthy through winter. A classic remedy for sore, scratchy throats.",
-    "pantryForm": "Dried Leaf",
+    "pantryName": "Sage Leaf",
     "stockLevel": 10,
-    "freshnessDays": 178
+    "freshnessDays": 75,
+    "harvestWindow": "fading"
   },
   {
     "id": "ginger",
@@ -165,9 +181,10 @@
     "botanicalName": "Zingiber officinale",
     "season": "winter",
     "description": "Doesn't grow locally, so the shop relies on cured, stored root through winter. Warming and a first reach for anyone walking in cold and a little queasy.",
-    "pantryForm": "Dried Root",
+    "pantryName": "Ginger Root",
     "stockLevel": 14,
-    "freshnessDays": 399
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "cinnamon",
@@ -175,9 +192,10 @@
     "botanicalName": "Cinnamomum verum",
     "season": "winter",
     "description": "Cured bark, stored in coils in the back pantry. Used sparingly — a little goes a long way toward warming both a tea blend and a cold room.",
-    "pantryForm": "Dried Bark",
+    "pantryName": "Cinnamon Bark",
     "stockLevel": 11,
-    "freshnessDays": 321
+    "freshnessDays": 90,
+    "harvestWindow": "peak"
   },
   {
     "id": "licorice-root",
@@ -185,9 +203,10 @@
     "botanicalName": "Glycyrrhiza glabra",
     "season": "winter",
     "description": "Naturally sweet dried root, kept on hand through the cold months. Often blended into throat and cough teas to round out sharper, more bitter herbs.",
-    "pantryForm": "Dried Root",
+    "pantryName": "Licorice Root",
     "stockLevel": 17,
-    "freshnessDays": 476
+    "freshnessDays": 90,
+    "harvestWindow": "soon"
   },
   {
     "id": "pine",
@@ -195,9 +214,10 @@
     "botanicalName": "Pinus strobus",
     "season": "winter",
     "description": "Evergreen, so it's one of the only fresh greens to gather in the dead of winter. The needles carry a bright, resinous scent and a good dose of vitamin C.",
-    "pantryForm": "Fresh Needle",
+    "pantryName": "Pine Needles",
     "stockLevel": 18,
-    "freshnessDays": 27
+    "freshnessDays": 14,
+    "harvestWindow": "peak"
   },
   {
     "id": "clove",
@@ -205,8 +225,9 @@
     "botanicalName": "Syzygium aromaticum",
     "season": "winter",
     "description": "Dried flower buds, stored whole in glass to keep their oil from fading. A small, potent ingredient — used a few buds at a time, never by the handful.",
-    "pantryForm": "Dried Bud",
+    "pantryName": "Clove Buds",
     "stockLevel": 12,
-    "freshnessDays": 272
+    "freshnessDays": 90,
+    "harvestWindow": "fading"
   }
 ]

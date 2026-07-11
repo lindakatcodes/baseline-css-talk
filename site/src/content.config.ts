@@ -2,6 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { file } from "astro/loaders";
 
 const seasons = ["spring", "summer", "autumn", "winter"] as const;
+const harvestWindows = ["peak", "soon", "fading"] as const;
 const batchForms = [
   "Tea",
   "Tincture",
@@ -19,9 +20,10 @@ const herbs = defineCollection({
     botanicalName: z.string(),
     season: z.enum(seasons),
     description: z.string(),
-    pantryForm: z.string(),
+    pantryName: z.string(),
     stockLevel: z.number(),
     freshnessDays: z.number(),
+    harvestWindow: z.enum(harvestWindows),
   }),
 });
 
@@ -30,7 +32,6 @@ const staples = defineCollection({
   schema: z.object({
     id: z.string(),
     name: z.string(),
-    pantryForm: z.string(),
     stockLevel: z.number(),
     freshnessDays: z.number(),
   }),

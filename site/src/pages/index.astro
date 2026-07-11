@@ -1,14 +1,40 @@
 ---
 import "../styles/index.css";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const herbs = (await getCollection("herbs")).map((entry) => entry.data);
 const staples = (await getCollection("staples")).map((entry) => entry.data);
 const batches = (await getCollection("batches")).map((entry) => entry.data);
 
-const currentHerbs = herbs.filter((herb) => herb.season === 'summer');
-const currentIngredients = [...currentHerbs, ...staples];
-const currentBatches = batches.filter((batch) => batch.season === 'summer');
+type Herb = CollectionEntry<"herbs">["data"];
+type Staple = CollectionEntry<"staples">["data"];
+
+const currentHerbs = herbs.filter((herb) => herb.season === "summer");
+
+const currentBatches = batches.filter((batch) => batch.season === "summer");
+
+const batchCountFor = (id: string) =>
+  currentBatches.filter((batch) => batch.ingredientIds.includes(id)).length;
+
+const currentIngredients: Array<{
+  displayName: string;
+  stockLevel: number;
+  freshnessDays: number;
+  batchCount: number;
+}> = [
+  ...currentHerbs.map((herb: Herb) => ({
+    displayName: herb.pantryName,
+    stockLevel: herb.stockLevel,
+    freshnessDays: herb.freshnessDays,
+    batchCount: batchCountFor(herb.id),
+  })),
+  ...staples.map((staple: Staple) => ({
+    displayName: staple.name,
+    stockLevel: staple.stockLevel,
+    freshnessDays: staple.freshnessDays,
+    batchCount: batchCountFor(staple.id),
+  })),
+];
 ---
 
 <html lang="en">
@@ -27,53 +53,61 @@ const currentBatches = batches.filter((batch) => batch.season === 'summer');
   <body>
     <header>
       <h1>Sage & Sundry Apothecary</h1>
-      <button class="current-season"><p>Summer</p></button>
+      <button class="current-season">Summer</button>
     </header>
-    <aside class="in-season">
-      <h2>In season:</h2>
-      <ul>
-        {
-          herbs.map((herb) => (
-            <li>
-              <p>{herb.name}</p>
-              <p>{herb.freshnessDays}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </aside>
     <main>
+      <aside class="in-season">
+        <h2>In season</h2>
+        <ul>
+          <li>
+            <p>Name</p>
+            <p>Harvest Window</p>
+          </li>
+          {
+            currentHerbs.map((herb) => (
+              <li>
+                <p>{herb.name}</p>
+                <p>{herb.harvestWindow}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
       <section class="pantry">
         <h2>Ingredients in Stock</h2>
         <table>
           <thead>
             <th>Ingredient</th>
-            <th>Stock</th>
+            <th>Quantity</th>
             <th>Freshness</th>
-            <th>In Use</th>
+            <th>Active batches</th>
           </thead>
           <tbody>
-            {currentIngredients.map((ingredient) => (
-              <tr>
-                <td>{ingredient.name}</td>
-                <td>{ingredient.stockLevel}</td>
-                <td>{ingredient.freshnessDays} Days</td>
-                <td>{} Batches</td>
-              </tr>
-            ))}
+            {
+              currentIngredients.map((ingredient) => (
+                <tr>
+                  <td>{ingredient.displayName}</td>
+                  <td>{ingredient.stockLevel}</td>
+                  <td>{ingredient.freshnessDays} Days</td>
+                  <td>{ingredient.batchCount} Batches</td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </section>
-      <div class="active-batches">
+      <section class="batches">
         <h2>Actively Cooking</h2>
-        {currentBatches.map((batch) => (
-          <div class="batch-card">
-            <p>{batch.name}</p>
-            <p>{batch.daysRemaining}</p>
-            <p>{"❯"}</p>
-          </div>
-        ))}
-      </div>
+        {
+          currentBatches.map((batch) => (
+            <div class="card">
+              <p class="card-name">{batch.name}</p>
+              <p class="card-time">{batch.daysRemaining} Days until ready</p>
+              <p class="card-arrow">{"❯"}</p>
+            </div>
+          ))
+        }
+      </section>
     </main>
   </body>
 </html>

@@ -2,28 +2,24 @@
   {
     "id": "carrier-oil",
     "name": "Sweet Almond Oil",
-    "pantryForm": "Bottled Oil",
     "stockLevel": 39,
     "freshnessDays": 336
   },
   {
     "id": "beeswax",
     "name": "Beeswax",
-    "pantryForm": "Block",
     "stockLevel": 16,
     "freshnessDays": 1075
   },
   {
     "id": "brandy",
     "name": "Brandy",
-    "pantryForm": "Bottled",
     "stockLevel": 4,
     "freshnessDays": 1306
   },
   {
     "id": "raw-honey",
     "name": "Raw Honey",
-    "pantryForm": "Jarred",
     "stockLevel": 28,
     "freshnessDays": 1060
   }

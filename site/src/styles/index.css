@@ -1,31 +1,188 @@
-@import "reset.css";
+@layer reset, base, layout, theme;
 
-:root {
-  --sans: "Figtree";
-  --serif: "Yeseva One";
-  --text-color: "#2D1B11";
-  --text-color-light: "#E8D5C3";
-  --spring-primary-color: "#FFCAD4";
-  --spring-secondary-color: "#F193A1";
-  --spring-accent-color: "#ADC2B5";
-  --summer-primary-color: "#CCD8AB";
-  --summer-secondary-color: "#9AB257";
-  --summer-accent-color: "#EF5778";
-  --fall-primary-color: "#FFCC85";
-  --fall-secondary-color: "#DD5E03";
-  --fall-accent-color: "#5C4771";
-  --winter-primary-color: "#CAE9FF";
-  --winter-secondary-color: "#5FA8D3";
-  --winter-accent-color: "#9C89B8";
+@import "reset.css" layer(reset);
+
+/* Base is our defaults - the tokens we have available and the basic typography the whole site should use */
+@layer base {
+  :root {
+    /* Font types sizing */
+    --sans: "Figtree";
+    --serif: "Yeseva One";
+    --fsize-small: 0.833rem;
+    --fsize-base: 1rem;
+    --fsize-large: 1.2rem;
+    --fsize-h2: 2.074rem;
+    --fsize-h1: 2.488rem;
+
+    /* Primitive color values */
+    --text-color: #2D1B11;
+    --spring-primary-color: #FFCAD4;
+    --spring-secondary-color: #F093A1;
+    --spring-accent-color: #BDA8C7;
+    --summer-primary-color: #CCD8AB;
+    --summer-secondary-color: #9AB257;
+    --summer-accent-color: #F37C96;
+    --fall-primary-color: #FFD770;
+    --fall-secondary-color: #F87112;
+    --fall-accent-color: #82944C;
+    --winter-primary-color: #CAE9FF;
+    --winter-secondary-color: #5FA8D3;
+    --winter-accent-color: #85C1B5;
+    /* Semantic color properties - what the site will actually use */
+    --primary-color: var(--spring-primary-color);
+    --secondary-color: var(--spring-secondary-color);
+    --accent-color: var(--spring-accent-color);
+    /* spacing - space-1 is the base value, so every step higher up is space-1 * the step number */
+    --space-1: 0.125rem; /* 2px */
+    --space-2: 0.25rem;  /* 4px */
+    --space-4: 0.5rem;   /* 8px */
+    --space-8: 1rem;     /* 16px */
+    --space-16: 2rem;    /* 32px */
+  }
+
+  body {
+    font-family: var(--sans);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--serif);
+    color: var(--text-color);
+  }
+
+  h1 {
+    font-size: var(--fsize-h1);
+  }
+
+  h2 {
+    font-size: var(--fsize-h2);
+  }
+
+  p, li, a, span, button {
+    color: var(--text-color);
+    font-size: var(--fsize-base);
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--serif);
+/* Layout is our page structure, how we want the elements to be organized on the screen and the space they should have and give each other */
+@layer layout {
+  header {
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-4);
+    padding-inline: var(--space-16);
+
+    & h1 {
+      flex-grow: 1;
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: var(--space-16) var(--space-4);
+  }
+
+  aside {
+    grid-row: 1 / span 2;
+    padding-inline: var(--space-8);
+    padding-block-start: var(--space-8);
+
+    & ul {
+      list-style-type: none;
+      padding-inline-start: 0;
+      margin-block-start: var(--space-2);
+
+      & li {
+        display: flex;
+        justify-content: space-between;
+        padding-inline-end: var(--space-4);
+        margin-block-end: var(--space-2);
+      }
+    }
+  }
+
+  .pantry {
+    padding-inline: var(--space-8);
+    padding-block-start: var(--space-8);
+
+    & table {
+      inline-size: 100%;
+
+      & thead th {
+        text-align: left;
+      }
+
+      & th, td {
+        padding-block: var(--space-2);
+      }
+    }
+  }
+
+  .batches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    padding-inline: var(--space-8);
+    padding-block-end: var(--space-16);
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    padding-block: var(--space-4);
+    padding-inline: var(--space-8);
+
+    & .card-name {
+      grid-row: 1;
+      grid-column: 1;
+      font-size: var(--fsize-large);
+    }
+
+    & .card-time {
+      grid-row: 2;
+      grid-column: 1;
+      font-size: var(--fsize-small);
+    }
+
+    & .card-arrow {
+      grid-row: 1 / span 2;
+      grid-column: 2;
+    }
+  }
 }
 
-p {
-  font-family: var(--sans);
+/* Theme is then our stylistic choices - what colors do we want things to be, how should they look? */
+@layer theme {
+  header {
+    background: var(--accent-color);
+    border-bottom: 2px solid var(--text-color);
+  }
+
+  main {
+    background: var(--primary-color);
+    box-shadow: inset 0 2px 2px 0 color-mix(in srgb, var(--text-color) 30%, transparent);
+  }
+
+  aside {
+    background: var(--secondary-color);
+    box-shadow: 2px 0 2px 0 color-mix(in srgb, var(--text-color) 30%, transparent);
+    
+    & ul li:first-child {
+      font-weight: bold;
+    }
+  }
+
+  th, td {
+    border-bottom: 1px solid var(--text-color); 
+  }
+
+  .card {
+    border: 2px solid var(--secondary-color);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px color-mix(in srgb, var(--text-color) 15%, transparent);
+    background: color-mix(in srgb, var(--primary-color) 80%, var(--secondary-color));
+  }
 }
