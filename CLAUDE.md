@@ -59,7 +59,7 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 **5. Foundation (everywhere, invisible but load-bearing)**
 
 - Full design token system (colors, spacing, radii) + 4 seasonal palette overrides
-- `@layer` stack: `tokens → base → layout → components → seasonal`
+- `@layer` stack: `reset → base → layout → theme`
 - **Brick:** Custom Properties + Cascade Layers
 
 ---
@@ -88,10 +88,10 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 
 ### Slide 2 — Brick 1: Custom Properties (~2.5 min)
 
-- Problem: hardcoded values scattered everywhere
+- Problem: the same value repeated across dozens of rules — change the brand color, go hunting through every file
 - Show `:root` tokens — live, scoped, not preprocessed like Sass
 - Point out the four seasonal palettes waiting to be used later
-- Standard: _"A hardcoded value is a bug. Every style references a token."_
+- Standard: _"Say it once. A token update propagates everywhere it's used — no hunting, no drift."_
 - Pivot: "We have the tokens. Now let's make sure our layout understands where it is."
 
 ### Slide 3 — Brick 2: Container Queries + Logical Properties (~3.5 min)
@@ -114,7 +114,7 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 ### Slide 5 — Brick 4: Cascade Layers (~2 min)
 
 - Problem: specificity wars, `!important` spirals
-- Diagram: layer stack (`tokens → base → layout → components → seasonal`)
+- Diagram: layer stack (`reset → base → layout → theme`)
 - Standard: _"Define your priority, not your selectors."_
 - Keep fast — this is glue, not a feature demo
 - Pivot: "The shop is built. Now for what makes it feel alive."
