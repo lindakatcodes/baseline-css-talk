@@ -5,4 +5,8 @@
   h4 {
     --uno: font-serif;
   }
+
+  pre, img {
+    margin-bottom: 1rem;
+  }
 }

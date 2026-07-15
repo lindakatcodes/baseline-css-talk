@@ -9,7 +9,7 @@ title: "Baseline Magic: The Art of Intent-Driven CSS"
 info: Modern CSS has entered a new era where we can express intent directly in our styles, treating the latest baseline features as our new fundamentals. In this session, we’ll craft a design piece by piece using ingredients like container queries, layers, and the :has selector. We’ll see how these pieces build on each other to create a cohesive system that is accessible and maintainable by design. You’ll leave with a refreshed perspective on the platform’s potential and the practical foundation needed to start weaving these modern fundamentals into your own projects today.
 comark: true
 duration: 25min
-transition: slide-left
+transition: fade
 class: text-center
 ---
 
@@ -26,66 +26,28 @@ Photo by <a href="https://unsplash.com/@anitaaustvika?utm_source=unsplash&utm_me
 </p>
 
 <!--
-Welcome everyone, and thanks so much for being here. I'm Linda, and today I want to invite you into the world of baseline CSS magic. Let's dive in.
+Welcome everyone, and thanks so much for being here. My name is Linda, and I'm a software engineer, team builder, and a video game enthusiast. Today, I invite you to go on a journey with me to a land where CSS is magical. Here we don't have to fight so hard against the cascade, we worth alongside it. We don't throw all the hacks we can think of to override a framework style, we declare it in it's place then apply our own styles and it just works. We don't search through the repository to find all of the files that need a single color or font changes, we declare it once and reuse it everywhere. Because in today's world...
 -->
 
 ---
-layout: two-cols-header
+layout: statement
 ---
 
-# CSS in 2026 is a system of intent.
-
-::left::
-
-## The problem? 
-
-CSS is often:
-- messy and disorganized
-- a collection of hacks
-- an afterthought
-
-::right::
-
-## The solution? 
-
-Writing CSS that is:
-- organized
-- uses the browser engines
-- intentional
-
-<style>
-  h1 {
-    text-align: center;
-    margin-block-end: 3rem;
-    margin-block-start: 6rem;
-  }
-</style>
+# In today's modern world, CSS is a system of intent.
 
 <!-- 
-Here's what I hope you'll take away from this talk - that CSS in 2026 is a system of intention. When most people talk about working with CSS, a lot of what you might think of is how messy it can be, that it's a collection of hacks and random values and pixel pushing. It's disorganized or even worse, an afterthought. 
-
-But no more!
-
-With the new tools we have in our code spellbook, we can transform what used to be random and messy into a system that is intentionally architected, telling the browser what we want it to do and letting it handle the heavy lifting for us. We can craft systems that are easier to maintain and read, systems that make our sites more accessible and usable to a wider range of people without having to pull in anything but the basics.
-
-To showcase this, we're going to build out an apothecary shop's inventory dashboard, one ingredient at a time.
+...CSS is a system of intent. This world isn't a fantasy - it's live in all modern browsers and broadly available. This is what I want you to come away with today, a new way of looking at CSS fundamentals that rekindle the joy of building things for the web. To showcase these, we're going to build out a dashboard for a small apothecary shop, one ingredient at a time.
 -->
 
----
-layout: two-cols
 ---
 
 # Custom Properties
 
-Variables we can define and reuse throughout our stylesheets.
+Variables we define and reuse throughout our stylesheets. More consistency, less repetition.
 
-Declare it once. Updates propagate everywhere it's used.
+<div class="grid grid-cols-2 gap-4 items-center">
 
-No hunting, no drift.
-
-We have the tokens. Now let's make sure our layout understands where it is.
-
-::right::
+<div>
 
 ```css
 :root {
@@ -94,9 +56,6 @@ We have the tokens. Now let's make sure our layout understands where it is.
     --spring-primary-color: #FFCAD4;
     --spring-secondary-color: #F093A1;
     --spring-accent-color: #BDA8C7;
-    --summer-primary-color: #CCD8AB;
-    --summer-secondary-color: #9AB257;
-    --summer-accent-color: #F37C96;
 
     /* Semantic color properties */
     --primary-color: var(--spring-primary-color);
@@ -104,18 +63,27 @@ We have the tokens. Now let's make sure our layout understands where it is.
     --accent-color: var(--spring-accent-color);
   }
 
+/* Then in our component/page */
   header {
     background: var(--accent-color);
     border-bottom: 2px solid var(--text-color);
   }
 ```
 
+</div>
+
+<div>
+<img src="./assets/images/03-custom-properties.png" alt="" />
+</div>
+
+</div>
+
+<v-click> We have the tokens. Now let's make sure our layout understands where it is. </v-click>
+
 <!-- 
-CSS has variables now! These can be a real game changer. Before, making a change to a site's colors or spacing could be repetitive and a real pain. Now, you change the value once, and the rest of your code automatically gets the new value. Changes are live instantly.
+Our first ingredient is custom properties. CSS now has a way to declare it's own variables and let us reuse them across our styles. They always start with two dashes, then whatever name we want. And when we want to use them, we wrap that name in the var() function. And now, if one of our colors changes, we have a single place we need to put the new value and all of the places we're using it will update automatically.
 
-Custom properties are also great for sizing and spacing values. One update location, instant gratification. That's pretty magical. And it helps us build with intention, keeping our site more consistent and logical by defining our sizing in one location and reusing it everywhere we need it. One-off tweaks are a lot more obvious now, making it easier to spot and fix and helping you stay more consistent.
-
-Now we have our tokens - let's make sure our page layouts understand where they are.
+With our tokens in place, next we'll focus on our layout and how it can know the amount of space it should take up.
 -->
 
 ---
@@ -134,7 +102,38 @@ We have tokens, responsive components, and parent logic. Let's talk about keepin
 
 # Cascade Layers
 
-The shop is built. Now for the things that make it feel alive.
+```css
+/* Set the ordering first to guarantee our intention. */
+@layer reset, base, layout, theme;
+/* Can import other stylesheets and assign to a layer. */
+@import "reset.css" layer(reset);
+/* Then we write the actual style rules where they make sense. */
+@layer base {
+  :root {
+    /* ...our tokens from the last slide */
+  }
+}
+@layer layout {
+  header {
+    display: flex;
+    align-items: center;
+    /* ... */
+  }
+}
+@layer theme {
+  /* ...the header from the last slide */
+}
+```
+
+<v-click>The shop is built. Now for the things that make it feel alive.</v-click>
+
+<!-- 
+order is king - declare the layer orders you want first, then you can write or organize them however you want and it won't matter
+especially great for framework styles like from tailwind or shadcn - put their layer lower than your other ones and yours will rule
+styles not in a layer have higher specificity than your layers - so the ordering goes user stylesheet (browser), user styles (user settings), the layers you describe, then unlayered styles
+this ordering and the ability to do it to our authored styles is the biggest takeaway from this; this gives us more control over our own styles, letting us manage the importance of them without having to resort to super specific class names or important tags. 
+if you mention important - note that using it flips the ordering, so a browser style having important actually makes it the most important instead of the least again 
+-->
 
 ---
 
