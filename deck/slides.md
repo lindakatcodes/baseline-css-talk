@@ -81,6 +81,7 @@ Variables we define and reuse throughout our stylesheets. More consistency, less
 <v-click> We have the tokens. Now let's make sure our layout understands where it is. </v-click>
 
 <!-- 
+widely avail, 96%
 Our first ingredient is custom properties. CSS now has a way to declare it's own variables and let us reuse them across our styles. They always start with two dashes, then whatever name we want. And when we want to use them, we wrap that name in the var() function. And now, if one of our colors changes, we have a single place we need to put the new value and all of the places we're using it will update automatically.
 
 With our tokens in place, next we'll focus on our layout and how it can know the amount of space it should take up.
@@ -92,11 +93,19 @@ With our tokens in place, next we'll focus on our layout and how it can know the
 
 The component knows its space. Now let's have the dashboard respond to its own state.
 
+<!-- 
+widely avail, size queries 92%
+-->
+
 ---
 
 # The `:has` Selector
 
 We have tokens, responsive components, and parent logic. Let's talk about keeping all of it organized.
+
+<!-- 
+widely avail, 93%
+-->
 
 ---
 
@@ -128,11 +137,22 @@ We have tokens, responsive components, and parent logic. Let's talk about keepin
 <v-click>The shop is built. Now for the things that make it feel alive.</v-click>
 
 <!-- 
-order is king - declare the layer orders you want first, then you can write or organize them however you want and it won't matter
-especially great for framework styles like from tailwind or shadcn - put their layer lower than your other ones and yours will rule
-styles not in a layer have higher specificity than your layers - so the ordering goes user stylesheet (browser), user styles (user settings), the layers you describe, then unlayered styles
-this ordering and the ability to do it to our authored styles is the biggest takeaway from this; this gives us more control over our own styles, letting us manage the importance of them without having to resort to super specific class names or important tags. 
-if you mention important - note that using it flips the ordering, so a browser style having important actually makes it the most important instead of the least again 
+widely avail, 94%
+Cascade layers give us a lot of our power to better handle how styles affect each other. You've probably heard the word cascade a ton, it is what the C in CSS stands for after all. At a high view, the cascade is the idea of styles starting from a point and then layering one on top of the other to replace each other and build out how our sites look. Browser defaults get applied first, then a browser user's individual settings if they have some, then our authored styles. 
+
+What layers gives us is a way to apply this same organiziational effect to all of the styles in our app. Where before everything was sitting at the same layer of specificity, now we have the power to determine what should be more and less important, without having to resort to the important flag our super long class names and identifiers.
+
+Order is the name of the game here, so you'll often see a single definition at the start of the first CSS file that gets imported into your app. The first time a layer's name is seen determines the order it goes in, and the first one is the easiest to overwrite so that order is important. Then, once the order is declared, we can start assigning values to each layer.
+
+There's two methods - we can import a file and assign it to a layer, like I'm doing with the reset stylesheet here. This is also super helpful if you're using something like Tailwind or a component library that has it's own styles - you can say that their styles go first, so what you want to change to make uniquely yours has an easier time taking the spotlight. 
+
+Or we can use the @layer syntax with the name and nest our styles inside it. Since we already declared the order we want at the top of our file, we can reuse this layer name in multiple files, and they all get added to the same layer. We can also list them in any order and it won't matter, because we've already told the browser what order to apply them in.
+
+Then if you really need something to take the highest value and go above everything, any styles that are not inside a layer get the highest specificity. 
+
+These layers help us to keep our concerns separate, and be able to update and replace values without having to make things harder on ourselves to come up with more and more detailed names. We can just say what we want and what order they should go in, and the browser knows what to do with it. 
+
+So now we have the majority of our shop designed and laid out! Now let's add a little more magic and movement to it. These next two properties are newly available in baseline and really make our app come alive.
 -->
 
 ---
@@ -141,11 +161,19 @@ if you mention important - note that using it flips the ordering, so a browser s
 
 State changes feel intentional. But what about elements that need to stay physically connected?
 
+<!-- 
+newly avail, 88% single-page
+-->
+
 ---
 
 # Anchor Positioning
 
 Tethered elements are the browser's job, not yours.
+
+<!-- 
+newly avail, 82%
+-->
 
 ---
 
@@ -157,8 +185,16 @@ Tethered elements are the browser's job, not yours.
 
 Stop fighting the browser. Collaborate with it.
 
+<!-- 
+
+-->
+
 ---
 layout: end
 ---
 
 # Connect with Me
+
+<!-- 
+qr code with a link to the slides/site/references, and how to connect w/ me. either need to build something out for this or make the qr code link to my site and have a url for the codebase (probably a link to the codebase from my portfolio too)
+-->
