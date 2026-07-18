@@ -38,8 +38,11 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 **2. In Season (left sidebar widget)**
 
 - Compact list of herbs currently harvestable
-- When the widget is moved/resized into the main content area, it expands into a full card with harvest window notes — reacting to its container, not the screen
+- Sidebar is resizable via a drag handle: JS tracks drag position and writes it to a `--sidebar-width` custom property; CSS (`grid-template-columns: var(--sidebar-width) 1fr`) does the actual layout work — JS's only job is "what's the number," CSS owns the response
+- Dragging the sidebar wider grows the In Season container, and the cards inside cross container query breakpoints — compact list item → full card with harvest window notes — reacting to their container's size, not the screen
+- On narrow/mobile viewports where the layout stacks to a single column, the same widget's container becomes full-width and naturally crosses into the expanded card breakpoint — one container query rule serves both the manual resize and the mobile stack, with zero extra CSS
 - **Brick:** Container Queries + Logical Properties (`padding-inline`, `margin-block` — verified in RTL with zero CSS changes)
+- **Why this approach (not the earlier "move the widget" idea):** dragging a widget from sidebar to main content isn't a real dashboard interaction — resizable panes are (VS Code, Notion, Linear). This keeps the demo honest: a small, real use of JS (position tracking) handing off entirely to CSS for the interesting part (the container query response)
 
 **3. The Pantry (main content)**
 
@@ -97,7 +100,7 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 ### Slide 3 — Brick 2: Container Queries + Logical Properties (~3.5 min)
 
 - Problem: media queries know the viewport, not the component
-- Recording: In Season widget moving from sidebar → main area, expanding
+- Recording: dragging the sidebar resize handle wider — In Season cards cross container breakpoints and expand with harvest window notes; then show the same cards expanding again when the layout stacks on mobile, no extra CSS
 - Pause after the recording before talking
 - Brief RTL demo: flip direction, zero CSS changes
 - Standard: _"Layout is a property of intent. Design for flow, not screen dimensions."_
@@ -167,8 +170,8 @@ Every section feeds the next — this is what makes the dashboard cohesive rathe
 
 - **Learning:** Ahmad Shadeed (ishadeed.com); web.dev/articles/container-queries (Una Kravets); Miriam Suzanne on spec intent. Logical Properties: web.dev/learn/css/logical-properties; Ahmad Shadeed article; Jen Simmons talks on flow layout/writing modes
 - **Slides:** Draft Slide 3 (needs recording first)
-- **Project:** In Season widget built (sidebar compact / main-area expanded); logical properties throughout; RTL tested; both demos recorded
-- **Deliverable:** Widget adapts to container, RTL verified, recordings saved; Slide 3 drafted
+- **Project:** In Season widget built with container query breakpoints (compact → expanded w/ harvest window notes); drag-to-resize sidebar handle wired (JS writes `--sidebar-width`, CSS grid + container queries do the rest); logical properties throughout; RTL tested; both demos recorded
+- **Deliverable:** Widget adapts to container via resize and via mobile stacking, RTL verified, recordings saved; Slide 3 drafted
 
 ### Week 4 (Jul 16–22): `:has()`
 
