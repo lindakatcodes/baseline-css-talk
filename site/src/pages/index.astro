@@ -60,14 +60,22 @@ const currentIngredients: Array<{
         <h2>In season</h2>
         <ul>
           <li>
-            <p>Name</p>
-            <p>Harvest Window</p>
+            <div class="key-details">
+              <p>Name</p>
+              <p>Harvest Window</p>
+            </div>
           </li>
           {
             currentHerbs.map((herb) => (
               <li>
-                <p>{herb.name}</p>
-                <p>{herb.harvestWindow}</p>
+                <div class="key-details">
+                  <p>{herb.name}</p>
+                  <p>{herb.harvestWindow}</p>
+                </div>
+                <div class="extra-details">
+                  <p>{herb.botanicalName}</p>
+                  <p>{herb.description}</p>
+                </div>
               </li>
             ))
           }

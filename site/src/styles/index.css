@@ -15,29 +15,29 @@
     --fsize-h1: 2.488rem;
 
     /* Primitive color values */
-    --text-color: #2D1B11;
-    --spring-primary-color: #FFCAD4;
-    --spring-secondary-color: #F093A1;
-    --spring-accent-color: #BDA8C7;
-    --summer-primary-color: #CCD8AB;
-    --summer-secondary-color: #9AB257;
-    --summer-accent-color: #F37C96;
-    --fall-primary-color: #FFD770;
-    --fall-secondary-color: #F87112;
-    --fall-accent-color: #82944C;
-    --winter-primary-color: #CAE9FF;
-    --winter-secondary-color: #5FA8D3;
-    --winter-accent-color: #85C1B5;
+    --text-color: #2d1b11;
+    --spring-primary-color: #ffcad4;
+    --spring-secondary-color: #f093a1;
+    --spring-accent-color: #bda8c7;
+    --summer-primary-color: #ccd8ab;
+    --summer-secondary-color: #9ab257;
+    --summer-accent-color: #f37c96;
+    --fall-primary-color: #ffd770;
+    --fall-secondary-color: #f87112;
+    --fall-accent-color: #82944c;
+    --winter-primary-color: #cae9ff;
+    --winter-secondary-color: #5fa8d3;
+    --winter-accent-color: #85c1b5;
     /* Semantic color properties - what the site will actually use */
     --primary-color: var(--spring-primary-color);
     --secondary-color: var(--spring-secondary-color);
     --accent-color: var(--spring-accent-color);
     /* spacing - space-1 is the base value, so every step higher up is space-1 * the step number */
     --space-1: 0.125rem; /* 2px */
-    --space-2: 0.25rem;  /* 4px */
-    --space-4: 0.5rem;   /* 8px */
-    --space-8: 1rem;     /* 16px */
-    --space-16: 2rem;    /* 32px */
+    --space-2: 0.25rem; /* 4px */
+    --space-4: 0.5rem; /* 8px */
+    --space-8: 1rem; /* 16px */
+    --space-16: 2rem; /* 32px */
   }
 
   body {
@@ -58,7 +58,11 @@
     font-size: var(--fsize-h2);
   }
 
-  p, li, a, span, button {
+  p,
+  li,
+  a,
+  span,
+  button {
     color: var(--text-color);
     font-size: var(--fsize-base);
   }
@@ -79,11 +83,13 @@
 
   main {
     display: grid;
-    grid-template-columns: 16rem 1fr;
+    grid-template-columns: 24em 1fr;
     gap: var(--space-16) var(--space-4);
   }
 
   aside {
+    container-type: inline-size;
+    container-name: in-season;
     grid-row: 1 / span 2;
     padding-inline: var(--space-8);
     padding-block-start: var(--space-8);
@@ -94,10 +100,22 @@
       margin-block-start: var(--space-2);
 
       & li {
-        display: flex;
-        justify-content: space-between;
         padding-inline-end: var(--space-4);
-        margin-block-end: var(--space-2);
+        padding-block: var(--space-4);
+
+        & .key-details {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        & .extra-details {
+          display: none;
+          transition: display 0.3s ease-in-out;
+
+          @container in-season (inline-size >= 24cqi) {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -113,7 +131,8 @@
         text-align: left;
       }
 
-      & th, td {
+      & th,
+      td {
         padding-block: var(--space-2);
       }
     }
@@ -163,26 +182,51 @@
 
   main {
     background: var(--primary-color);
-    box-shadow: inset 0 2px 2px 0 color-mix(in srgb, var(--text-color) 30%, transparent);
+    box-shadow: inset 0 2px 2px 0
+      color-mix(in srgb, var(--text-color) 30%, transparent);
   }
 
   aside {
     background: var(--secondary-color);
-    box-shadow: 2px 0 2px 0 color-mix(in srgb, var(--text-color) 30%, transparent);
-    
-    & ul li:first-child {
-      font-weight: bold;
+    box-shadow: 2px 0 2px 0
+      color-mix(in srgb, var(--text-color) 30%, transparent);
+
+    & ul {
+      & li:first-child {
+        font-weight: bold;
+        border-top: none;
+      }
+
+      & li {
+        border-top: 1px solid var(--text-color);
+      }
+
+      & .key-details p:first-of-type {
+        @container in-season (inline-size >= 24cqi) {
+          font-weight: bold;
+        }
+      }
+
+      & .extra-details p:first-of-type {
+        font-style: italic;
+        font-size: var(--fsize-small);
+      }
     }
   }
 
-  th, td {
-    border-bottom: 1px solid var(--text-color); 
+  th,
+  td {
+    border-bottom: 1px solid var(--text-color);
   }
 
   .card {
     border: 2px solid var(--secondary-color);
     border-radius: 0.25rem;
     box-shadow: 0 2px 4px color-mix(in srgb, var(--text-color) 15%, transparent);
-    background: color-mix(in srgb, var(--primary-color) 80%, var(--secondary-color));
+    background: color-mix(
+      in srgb,
+      var(--primary-color) 80%,
+      var(--secondary-color)
+    );
   }
 }
