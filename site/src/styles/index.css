@@ -82,9 +82,14 @@
   }
 
   main {
+    --season-width: 24rem;
     display: grid;
-    grid-template-columns: 24em 1fr;
+    grid-template-columns: var(--season-width) 1fr;
     gap: var(--space-16) var(--space-4);
+
+    &.season-expanded {
+      --season-width: 32rem;
+    }
   }
 
   aside {
@@ -93,6 +98,16 @@
     grid-row: 1 / span 2;
     padding-inline: var(--space-8);
     padding-block-start: var(--space-8);
+
+    & .title {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      & h2 {
+        flex-grow: 1;
+      }
+    }
 
     & ul {
       list-style-type: none;
@@ -112,7 +127,7 @@
           display: none;
           transition: display 0.3s ease-in-out;
 
-          @container in-season (inline-size >= 24cqi) {
+          @container in-season (inline-size >= 28cqi) {
             display: block;
           }
         }
@@ -191,6 +206,15 @@
     box-shadow: 2px 0 2px 0
       color-mix(in srgb, var(--text-color) 30%, transparent);
 
+    & .title {
+      & button {
+        background: none;
+        border: 1px solid var(--text-color);
+        border-radius: 0.25rem;
+        padding-inline: var(--space-4);
+      }
+    }
+
     & ul {
       & li:first-child {
         font-weight: bold;
@@ -202,7 +226,7 @@
       }
 
       & .key-details p:first-of-type {
-        @container in-season (inline-size >= 24cqi) {
+        @container in-season (inline-size >= 28cqi) {
           font-weight: bold;
         }
       }

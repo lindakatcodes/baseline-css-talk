@@ -57,7 +57,10 @@ const currentIngredients: Array<{
     </header>
     <main>
       <aside class="in-season">
-        <h2>In season</h2>
+        <div class="title">
+          <h2>In season</h2>
+          <button id="season-toggle" aria-pressed="false">Details ⇆</button>
+        </div>
         <ul>
           <li>
             <div class="key-details">
@@ -119,3 +122,13 @@ const currentIngredients: Array<{
     </main>
   </body>
 </html>
+
+<script>
+  const main = document.querySelector("main");
+  const seasonToggle = document.querySelector("#season-toggle");
+
+  seasonToggle?.addEventListener("click", () => {
+    const expanded = main?.classList.toggle("season-expanded");
+    seasonToggle.setAttribute("aria-pressed", String(expanded));
+  });
+</script>
