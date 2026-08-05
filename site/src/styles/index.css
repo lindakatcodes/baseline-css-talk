@@ -2,6 +2,25 @@
 
 @import "reset.css" layer(reset);
 
+/* We make these property declarations so the browser knows how to transition them - that way we can make the seasonal color change more gradual */
+@property --primary-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffcad4;
+}
+
+@property --secondary-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f093a1;
+}
+
+@property --accent-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #bda8c7;
+}
+
 /* Base is our defaults - the tokens we have available and the basic typography the whole site should use */
 @layer base {
   :root {
@@ -28,10 +47,7 @@
     --winter-primary-color: #cae9ff;
     --winter-secondary-color: #5fa8d3;
     --winter-accent-color: #85c1b5;
-    /* Semantic color properties - what the site will actually use */
-    --primary-color: var(--spring-primary-color);
-    --secondary-color: var(--spring-secondary-color);
-    --accent-color: var(--spring-accent-color);
+
     /* spacing - space-1 is the base value, so every step higher up is space-1 * the step number */
     --space-1: 0.125rem; /* 2px */
     --space-2: 0.25rem; /* 4px */
@@ -66,6 +82,11 @@
     color: var(--text-color);
     font-size: var(--fsize-base);
   }
+
+  /* This is specifically so our color theme can ease in and out instead of  */
+  header, main, aside, .season-options, label, .card {
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 /* Layout is our page structure, how we want the elements to be organized on the screen and the space they should have and give each other */
@@ -78,6 +99,30 @@
 
     & h1 {
       flex-grow: 1;
+    }
+
+    & .season-options {
+      display: flex;
+      gap: var(--space-4);
+
+      & legend {
+        padding-inline: var(--space-2);
+      }
+
+      & div {
+        inline-size: 5rem;
+        padding: var(--space-2) var(--space-4);
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        & input {
+          appearance: none;
+          position: absolute;
+          top: 50%;
+          left: 0;
+        }
+      }
     }
   }
 
@@ -190,9 +235,48 @@
 
 /* Theme is then our stylistic choices - what colors do we want things to be, how should they look? */
 @layer theme {
+  body:has(input[value="spring"]:checked) {
+    /* Semantic color properties - what the site will actually use */
+    --primary-color: var(--spring-primary-color);
+    --secondary-color: var(--spring-secondary-color);
+    --accent-color: var(--spring-accent-color);
+  }
+
+  body:has(input[value="summer"]:checked) {
+    --primary-color: var(--summer-primary-color);
+    --secondary-color: var(--summer-secondary-color);
+    --accent-color: var(--summer-accent-color);
+  }
+
+  body:has(input[value="fall"]:checked) {
+    --primary-color: var(--fall-primary-color);
+    --secondary-color: var(--fall-secondary-color);
+    --accent-color: var(--fall-accent-color);
+  }
+
+  body:has(input[value="winter"]:checked) {
+    --primary-color: var(--winter-primary-color);
+    --secondary-color: var(--winter-secondary-color);
+    --accent-color: var(--winter-accent-color);
+  }
+
   header {
     background: var(--accent-color);
     border-bottom: 2px solid var(--text-color);
+
+    & .season-options {
+      border: 2px ridge var(--primary-color);
+
+      & legend {
+        font-size: var(--fsize-small);
+      }
+
+      & div:has(:checked) label {
+        font-weight: bold;
+        text-decoration: 2px solid underline var(--secondary-color);
+        text-underline-offset: var(--space-4);
+      }
+    }
   }
 
   main {

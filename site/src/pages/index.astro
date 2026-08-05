@@ -53,7 +53,31 @@ const currentIngredients: Array<{
   <body>
     <header>
       <h1>Sage & Sundry Apothecary</h1>
-      <button class="current-season">Summer</button>
+      <fieldset class="season-options">
+        <legend>Current season:</legend>
+        <div>
+          <input
+            type="radio"
+            id="spring"
+            name="season"
+            value="spring"
+            checked
+          />
+          <label for="spring">Spring</label>
+        </div>
+        <div>
+          <input type="radio" id="summer" name="season" value="summer" />
+          <label for="summer">Summer</label>
+        </div>
+        <div>
+          <input type="radio" id="fall" name="season" value="fall" />
+          <label for="fall">Fall</label>
+        </div>
+        <div>
+          <input type="radio" id="winter" name="season" value="winter" />
+          <label for="winter">Winter</label>
+        </div>
+      </fieldset>
     </header>
     <main>
       <aside class="in-season">
