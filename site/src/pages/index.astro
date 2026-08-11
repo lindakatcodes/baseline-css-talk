@@ -16,23 +16,31 @@ const currentBatches = batches.filter((batch) => batch.season === "summer");
 const batchCountFor = (id: string) =>
   currentBatches.filter((batch) => batch.ingredientIds.includes(id)).length;
 
+const batchDetails = (id: string) =>
+  currentBatches
+    .filter((batch) => batch.ingredientIds.includes(id))
+    .map((batch) => batch.name);
+
 const currentIngredients: Array<{
   displayName: string;
   stockLevel: number;
   freshnessDays: number;
   batchCount: number;
+  batchNames: string[];
 }> = [
   ...currentHerbs.map((herb: Herb) => ({
     displayName: herb.pantryName,
     stockLevel: herb.stockLevel,
     freshnessDays: herb.freshnessDays,
     batchCount: batchCountFor(herb.id),
+    batchNames: batchDetails(herb.id),
   })),
   ...staples.map((staple: Staple) => ({
     displayName: staple.name,
     stockLevel: staple.stockLevel,
     freshnessDays: staple.freshnessDays,
     batchCount: batchCountFor(staple.id),
+    batchNames: batchDetails(staple.id),
   })),
 ];
 ---
@@ -119,12 +127,28 @@ const currentIngredients: Array<{
           </thead>
           <tbody>
             {
-              currentIngredients.map((ingredient) => (
+              currentIngredients.map((ingredient, index) => (
                 <tr>
                   <td>{ingredient.displayName}</td>
                   <td>{ingredient.stockLevel}</td>
                   <td>{ingredient.freshnessDays} Days</td>
-                  <td>{ingredient.batchCount} Batches</td>
+                  <td>
+                    <button
+                      class="batch-pill"
+                      popovertarget={`batch-details-${index}`}
+                    >
+                      {ingredient.batchCount} Batches
+                    </button>
+                    <div
+                      id={`batch-details-${index}`}
+                      class="batch-detail"
+                      popover
+                    >
+                      {ingredient.batchNames.map((name) => (
+                        <p>❧ {name}</p>
+                      ))}
+                    </div>
+                  </td>
                 </tr>
               ))
             }
