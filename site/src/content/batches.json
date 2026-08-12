@@ -81,15 +81,6 @@
     "daysRemaining": 11
   },
   {
-    "id": "peppermint-digestive-tea",
-    "name": "Peppermint Digestive Tea",
-    "form": "Tea",
-    "season": "summer",
-    "ingredientIds": ["peppermint", "chamomile"],
-    "daysToMake": 3,
-    "daysRemaining": 3
-  },
-  {
     "id": "lavender-infused-oil",
     "name": "Lavender Infused Oil",
     "form": "Infused Oil",

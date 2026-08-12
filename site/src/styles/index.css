@@ -41,9 +41,9 @@
     --summer-primary-color: #ccd8ab;
     --summer-secondary-color: #9ab257;
     --summer-accent-color: #f37c96;
-    --fall-primary-color: #ffd770;
-    --fall-secondary-color: #f87112;
-    --fall-accent-color: #82944c;
+    --autumn-primary-color: #ffd770;
+    --autumn-secondary-color: #f87112;
+    --autumn-accent-color: #82944c;
     --winter-primary-color: #cae9ff;
     --winter-secondary-color: #5fa8d3;
     --winter-accent-color: #85c1b5;
@@ -183,6 +183,27 @@
         }
       }
     }
+
+    & ul[data-season] {
+      display: none;
+    }
+  }
+
+  /* toggle visibility of the current in season herbs */
+  body:has(input[value="spring"]:checked) [data-season="spring"] {
+    display: revert;
+  }
+
+  body:has(input[value="summer"]:checked) [data-season="summer"] {
+    display: revert;
+  }
+
+  body:has(input[value="autumn"]:checked) [data-season="autumn"] {
+    display: revert;
+  }
+
+  body:has(input[value="winter"]:checked) [data-season="winter"] {
+    display: revert;
   }
 
   .pantry {
@@ -191,6 +212,7 @@
 
     & table {
       inline-size: 100%;
+      table-layout: fixed;
 
       & thead th {
         text-align: left;
@@ -212,14 +234,37 @@
         padding: var(--space-4);
       }
     }
+
+    & table[data-season] {
+      display: none;
+    }
   }
 
   .batches {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
     padding-inline: var(--space-8);
     padding-block-end: var(--space-16);
+
+    & [data-season] {
+      display: none;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  body:has(input[value="spring"]:checked) .batches [data-season="spring"] {
+    display: grid;
+  }
+
+  body:has(input[value="summer"]:checked) .batches [data-season="summer"] {
+    display: grid;
+  }
+
+  body:has(input[value="autumn"]:checked) .batches [data-season="autumn"] {
+    display: grid;
+  }
+
+  body:has(input[value="winter"]:checked) .batches [data-season="winter"] {
+    display: grid;
   }
 
   .card {
@@ -264,10 +309,10 @@
     --accent-color: var(--summer-accent-color);
   }
 
-  body:has(input[value="fall"]:checked) {
-    --primary-color: var(--fall-primary-color);
-    --secondary-color: var(--fall-secondary-color);
-    --accent-color: var(--fall-accent-color);
+  body:has(input[value="autumn"]:checked) {
+    --primary-color: var(--autumn-primary-color);
+    --secondary-color: var(--autumn-secondary-color);
+    --accent-color: var(--autumn-accent-color);
   }
 
   body:has(input[value="winter"]:checked) {

@@ -110,17 +110,6 @@
     "harvestWindow": "soon"
   },
   {
-    "id": "peppermint",
-    "name": "Peppermint",
-    "botanicalName": "Mentha piperita",
-    "season": "summer",
-    "description": "Grows aggressively once summer heat sets in — most herbalists cut it back several times a season just to keep it contained. Cooling and reliably good for the stomach.",
-    "pantryName": "Peppermint Leaf",
-    "stockLevel": 4,
-    "freshnessDays": 75,
-    "harvestWindow": "peak"
-  },
-  {
     "id": "elderberry",
     "name": "Elderberry",
     "botanicalName": "Sambucus nigra",
