@@ -44,6 +44,7 @@ const batches = defineCollection({
     name: z.string(),
     form: z.enum(batchForms),
     season: z.enum(seasons),
+    description: z.string(),
     ingredientIds: z.array(z.string()),
     daysToMake: z.number(),
     daysRemaining: z.number(),

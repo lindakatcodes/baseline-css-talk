@@ -4,6 +4,7 @@
     "name": "Spring Tonic Tea",
     "form": "Tea",
     "season": "spring",
+    "description": "A bright, grassy blend meant to be drunk daily through the first warm weeks. Nettle carries the minerals, dandelion leaf adds the bitterness, and lemon balm keeps the whole thing pleasant enough to actually finish.",
     "ingredientIds": ["nettle", "dandelion", "lemon-balm"],
     "daysToMake": 3,
     "daysRemaining": 2
@@ -13,6 +14,7 @@
     "name": "Dandelion Bitters",
     "form": "Tincture",
     "season": "spring",
+    "description": "Roots dug before the plant flowers, chopped and left in brandy for five weeks. A few drops taken before a meal — the traditional bitter tonic, and the reason half the pantry smells like this all spring.",
     "ingredientIds": ["dandelion", "brandy"],
     "daysToMake": 35,
     "daysRemaining": 21
@@ -22,6 +24,7 @@
     "name": "Chickweed Salve",
     "form": "Salve",
     "season": "spring",
+    "description": "Wilted chickweed infused into sweet almond oil for three weeks, then set with beeswax. Made for the small irritations of garden season — scrapes, dry knuckles, whatever the brambles do to your forearms.",
     "ingredientIds": ["chickweed", "carrier-oil", "beeswax"],
     "daysToMake": 24,
     "daysRemaining": 20
@@ -31,6 +34,7 @@
     "name": "Violet Flower Honey",
     "form": "Honey Infusion",
     "season": "spring",
+    "description": "Fresh blossoms layered into raw honey and left in a sunny window until the honey takes on their color and scent. Sweet, floral, and worth the short window — the flowers are gone in a fortnight.",
     "ingredientIds": ["violet", "raw-honey"],
     "daysToMake": 7,
     "daysRemaining": 4
@@ -40,6 +44,7 @@
     "name": "Lemon Balm Calm Tea",
     "form": "Tea",
     "season": "spring",
+    "description": "A gentle evening blend of lemon balm and violet leaf. Nothing dramatic — just a soft, citrusy cup for the end of a long day, and the one customers reorder most.",
     "ingredientIds": ["lemon-balm", "violet"],
     "daysToMake": 3,
     "daysRemaining": 1
@@ -49,6 +54,7 @@
     "name": "Lavender Chamomile Sleep Tea",
     "form": "Tea",
     "season": "summer",
+    "description": "Equal parts lavender bud and chamomile flower, blended after both have fully dried. The house blend for winding down, and the one that makes the whole workshop smell like it.",
     "ingredientIds": ["lavender", "chamomile"],
     "daysToMake": 3,
     "daysRemaining": 1
@@ -58,6 +64,7 @@
     "name": "Elderflower Cordial",
     "form": "Syrup",
     "season": "summer",
+    "description": "Flower heads steeped overnight, then pressed and sweetened with raw honey. It tastes like the two weeks of the year the elder is in bloom, which is exactly how long there is to make it.",
     "ingredientIds": ["elderflower", "raw-honey"],
     "daysToMake": 3,
     "daysRemaining": 3
@@ -67,6 +74,7 @@
     "name": "Calendula Salve",
     "form": "Salve",
     "season": "summer",
+    "description": "Petals slow-infused into sweet almond oil for three weeks, then thickened with beeswax into a soft golden balm. Calendula is the workhorse of the skin shelf — this batch goes into nearly every gift box.",
     "ingredientIds": ["calendula", "carrier-oil", "beeswax"],
     "daysToMake": 21,
     "daysRemaining": 5
@@ -76,6 +84,7 @@
     "name": "Yarrow Tincture",
     "form": "Tincture",
     "season": "summer",
+    "description": "Flowering tops packed into brandy and left to macerate through the end of summer. Yarrow is a classic field remedy, traditionally reached for on the spot when someone's come back from a walk bleeding.",
     "ingredientIds": ["yarrow", "brandy"],
     "daysToMake": 31,
     "daysRemaining": 11
@@ -85,6 +94,7 @@
     "name": "Lavender Infused Oil",
     "form": "Infused Oil",
     "season": "summer",
+    "description": "Dried buds steeped in sweet almond oil, kept out of direct light so the color holds. Half of this becomes salve later in the year; the rest is sold as-is for massage and bath oil.",
     "ingredientIds": ["lavender", "carrier-oil"],
     "daysToMake": 19,
     "daysRemaining": 3
@@ -94,6 +104,7 @@
     "name": "Elderberry Immune Syrup",
     "form": "Syrup",
     "season": "autumn",
+    "description": "Berries simmered down with rosehips, strained, and stirred into raw honey once cooled. The busiest batch of the year — every household wants a jar in the cupboard before the first cold goes around.",
     "ingredientIds": ["elderberry", "rosehip", "raw-honey"],
     "daysToMake": 3,
     "daysRemaining": 2
@@ -103,6 +114,7 @@
     "name": "Echinacea Root Tincture",
     "form": "Tincture",
     "season": "autumn",
+    "description": "Third-year roots, scrubbed and chopped, extracting in brandy for three weeks. Slow to prepare and worth doing early — by the time anyone asks for it, it's too late to start a fresh batch.",
     "ingredientIds": ["echinacea", "brandy"],
     "daysToMake": 23,
     "daysRemaining": 8
@@ -112,6 +124,7 @@
     "name": "Hawthorn Heart Tea",
     "form": "Tea",
     "season": "autumn",
+    "description": "Haws and rosehips cracked and blended into a tart, deep-red cup. Hawthorn has been the traditional heart herb in European folk practice for centuries; this is the gentlest way to take it daily.",
     "ingredientIds": ["hawthorn", "rosehip"],
     "daysToMake": 2,
     "daysRemaining": 1
@@ -121,6 +134,7 @@
     "name": "Sage Throat Tincture",
     "form": "Tincture",
     "season": "autumn",
+    "description": "Garden sage steeped in brandy until it turns dark and resinous. Sharp and astringent, traditionally used as a gargle — the first thing off the shelf when the weather turns damp.",
     "ingredientIds": ["sage", "brandy"],
     "daysToMake": 26,
     "daysRemaining": 2
@@ -130,6 +144,7 @@
     "name": "Rosehip Vitamin Oil",
     "form": "Infused Oil",
     "season": "autumn",
+    "description": "Hips crushed and infused into sweet almond oil after the first frost has softened them. A rich, orange-tinted oil for the months when the wind starts taking the skin off your cheeks.",
     "ingredientIds": ["rosehip", "carrier-oil"],
     "daysToMake": 12,
     "daysRemaining": 7
@@ -139,6 +154,7 @@
     "name": "Ginger Cinnamon Warming Tea",
     "form": "Tea",
     "season": "winter",
+    "description": "Ginger root, cinnamon bark, and whole clove buds blended for a cup with real heat to it. Made in small batches all winter because it never sits on the shelf long.",
     "ingredientIds": ["ginger", "cinnamon", "clove"],
     "daysToMake": 3,
     "daysRemaining": 1
@@ -148,6 +164,7 @@
     "name": "Licorice Cough Tea",
     "form": "Tea",
     "season": "winter",
+    "description": "Licorice root and ginger, blended coarse so it holds up to a long steep. The licorice makes it sweet on its own, which is the point — a scratchy throat wants soothing, not fussing over.",
     "ingredientIds": ["licorice-root", "ginger"],
     "daysToMake": 3,
     "daysRemaining": 2
@@ -157,6 +174,7 @@
     "name": "Pine Resin Salve",
     "form": "Salve",
     "season": "winter",
+    "description": "Needles stripped from winter deadfall and steeped in sweet almond oil until it turns green and sharply resinous, then set with beeswax. A stiff, piney balm for chapped hands and cold-weather skin.",
     "ingredientIds": ["pine", "carrier-oil", "beeswax"],
     "daysToMake": 22,
     "daysRemaining": 1
@@ -166,6 +184,7 @@
     "name": "Clove Toothache Oil",
     "form": "Infused Oil",
     "season": "winter",
+    "description": "Whole clove buds infused into sweet almond oil over two weeks. One of the oldest remedies in the book — a single drop held against the sore spot, known to work long before anyone could explain why.",
     "ingredientIds": ["clove", "carrier-oil"],
     "daysToMake": 15,
     "daysRemaining": 5
@@ -175,6 +194,7 @@
     "name": "Cinnamon Tincture",
     "form": "Tincture",
     "season": "winter",
+    "description": "Bark chips extracting in brandy for a full month until the liquid goes deep amber. Warming, faintly sweet, and used as much for flavoring other preparations as it is on its own.",
     "ingredientIds": ["cinnamon", "brandy"],
     "daysToMake": 28,
     "daysRemaining": 22
