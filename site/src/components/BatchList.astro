@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+
+const batches = (await getCollection("batches")).map((entry) => entry.data);
+const seasons = ["spring", "summer", "autumn", "winter"];
+---
+
+<div class="batch-list">
+  {
+    seasons.map((season) => (
+      <div data-season={season}>
+        {batches
+          .filter((batch) => batch.season === season)
+          .map((batch) => (
+            <button class="card" data-batch={batch.id}>
+              <p class="card-name">{batch.name}</p>
+              <p class="card-time">{batch.daysRemaining} Days until ready</p>
+              <p class="card-arrow">{"❯"}</p>
+            </button>
+          ))}
+      </div>
+    ))
+  }
+</div>

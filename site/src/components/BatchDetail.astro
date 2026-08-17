@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+const batches = (await getCollection("batches")).map((entry) => entry.data);
+const seasons = ["spring", "summer", "autumn", "winter"];
+---
+
+{
+  seasons.map((season) => {
+    return batches
+      .filter((batch) => batch.season === season)
+      .map((batch) => (
+        <div class="batch-list-detail" id={`batch-detail-${batch.id}`} hidden>
+          <button data-back={batch.id}>{"❮"}</button>
+          <h3>{batch.name}</h3>
+          <div class="details">
+            <p>{batch.form}</p>
+            <p>{batch.daysToMake}</p>
+            <p>{batch.daysRemaining}</p>
+          </div>
+          <p>{batch.description}</p>
+          <ul>
+            {batch.ingredientIds.map((ingredient) => (
+              <li>{ingredient}</li>
+            ))}
+          </ul>
+        </div>
+      ));
+  })
+}

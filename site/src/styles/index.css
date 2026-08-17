@@ -1,4 +1,4 @@
-@layer reset, base, layout, theme;
+@layer reset, base, layout, theme, motion;
 
 @import "reset.css" layer(reset);
 
@@ -58,6 +58,10 @@
 
   body {
     font-family: var(--sans);
+    transition:
+      --primary-color 0.3s ease-in-out,
+      --secondary-color 0.3s ease-in-out,
+      --accent-color 0.3s ease-in-out;
   }
 
   h1,
@@ -81,16 +85,6 @@
   button {
     color: var(--text-color);
     font-size: var(--fsize-base);
-  }
-
-  /* This is specifically so our color theme can ease in and out instead of  */
-  header,
-  main,
-  aside,
-  .season-options,
-  label,
-  .card {
-    transition: all 0.2s ease-in-out;
   }
 }
 
@@ -243,6 +237,7 @@
   .batches {
     padding-inline: var(--space-8);
     padding-block-end: var(--space-16);
+    min-block-size: 35rem;
 
     & [data-season] {
       display: none;
@@ -410,5 +405,66 @@
       var(--primary-color) 80%,
       var(--secondary-color)
     );
+  }
+}
+
+@layer motion {
+  ::view-transition-group(batch-panel) {
+    animation: none;
+    overflow: clip;
+  }
+
+  .batches {
+    view-transition-name: batch-panel;
+  }
+
+  @keyframes slide-from-right {
+    from {
+      translate: 30% 0;
+      opacity: 0;
+    }
+  }
+  @keyframes slide-to-left {
+    to {
+      translate: -30% 0;
+      opacity: 0;
+    }
+  }
+  @keyframes slide-from-left {
+    from {
+      translate: -30% 0;
+      opacity: 0;
+    }
+  }
+  @keyframes slide-to-right {
+    to {
+      translate: 30% 0;
+      opacity: 0;
+    }
+  }
+
+  html[data-view="detail"] {
+    &::view-transition-new(batch-panel) {
+      animation: 350ms ease-out both slide-from-right;
+    }
+    &::view-transition-old(batch-panel) {
+      animation: 350ms ease-in both slide-to-left;
+    }
+  }
+
+  html[data-view="dashboard"] {
+    &::view-transition-new(batch-panel) {
+      animation: 350ms ease-out both slide-from-left;
+    }
+    &::view-transition-old(batch-panel) {
+      animation: 350ms ease-in both slide-to-right;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html::view-transition-old(*),
+    html::view-transition-new(*) {
+      animation-duration: 1ms;
+    }
   }
 }

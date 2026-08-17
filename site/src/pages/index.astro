@@ -1,6 +1,8 @@
 ---
 import "../styles/index.css";
 import { getCollection, type CollectionEntry } from "astro:content";
+import BatchList from "../components/BatchList.astro";
+import BatchDetail from "../components/BatchDetail.astro";
 
 type Herb = CollectionEntry<"herbs">["data"];
 type Staple = CollectionEntry<"staples">["data"];
@@ -52,7 +54,7 @@ const seasonalData = seasons.map((season) => {
 });
 ---
 
-<html lang="en">
+<html lang="en" data-view="dashboard">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -174,21 +176,8 @@ const seasonalData = seasons.map((season) => {
       </section>
       <section class="batches">
         <h2>Actively Cooking</h2>
-        {
-          seasonalData.map((data) => (
-            <div data-season={data.season}>
-              {data.currentBatches.map((batch) => (
-                <div class="card">
-                  <p class="card-name">{batch.name}</p>
-                  <p class="card-time">
-                    {batch.daysRemaining} Days until ready
-                  </p>
-                  <p class="card-arrow">{"❯"}</p>
-                </div>
-              ))}
-            </div>
-          ))
-        }
+        <BatchList />
+        <BatchDetail />
       </section>
     </main>
   </body>
@@ -201,5 +190,43 @@ const seasonalData = seasons.map((season) => {
   seasonToggle?.addEventListener("click", () => {
     const expanded = main?.classList.toggle("season-expanded");
     seasonToggle.setAttribute("aria-pressed", String(expanded));
+  });
+
+  const batchList = document.querySelector(".batch-list") as HTMLElement;
+  const batchesSection = document.querySelector(".batches") as HTMLElement;
+
+  function open(id: string) {
+    withTransition(() => {
+      const detailPanel = document.getElementById(
+        `batch-detail-${id}`,
+      ) as HTMLElement;
+      console.log(batchList, detailPanel);
+      batchList.hidden = true;
+      detailPanel.hidden = false;
+      document.documentElement.dataset.view = "detail";
+    });
+  }
+
+  function back(id: string) {
+    withTransition(() => {
+      document.getElementById(`batch-detail-${id}`)!.hidden = true;
+      batchList.hidden = false;
+      document.documentElement.dataset.view = "dashboard";
+    });
+  }
+
+  function withTransition(swap: () => void) {
+    if (!document.startViewTransition) return swap();
+    document.startViewTransition(swap);
+  }
+
+  batchesSection.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (!target) return;
+    const card = target.closest("[data-batch]") as HTMLElement | null;
+    const backBtn = target.closest("[data-back]") as HTMLElement | null;
+    console.log(card, backBtn);
+    if (card) open(card.dataset.batch || "0");
+    if (backBtn) back(backBtn.dataset.back || "0");
   });
 </script>
