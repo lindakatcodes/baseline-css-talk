@@ -11,6 +11,7 @@ comark: true
 duration: 25min
 transition: fade
 class: text-center
+canvasWidth: 1024
 ---
 
 <!-- markdownlint-disable -->
@@ -26,7 +27,13 @@ Photo by <a href="https://unsplash.com/@anitaaustvika?utm_source=unsplash&utm_me
 </p>
 
 <!--
-Welcome everyone, and thanks so much for being here. My name is Linda, and I'm a software engineer, team builder, and a video game enthusiast. Today, I invite you to go on a journey with me to a land where CSS is magical. Here we don't have to fight so hard against the cascade, we worth alongside it. We don't throw all the hacks we can think of to override a framework style, we declare it in it's place then apply our own styles and it just works. We don't search through the repository to find all of the files that need a single color or font changes, we declare it once and reuse it everywhere. Because in today's world...
+Welcome everyone, and thanks so much for being here. My name is Linda, and I'm a software engineer. 
+
+Today we're going to get a little witchy and learn some CSS magic.
+
+You might know some of the old magic, hacking styles to create the designs you want. Or you might be newer to the craft, scared from horror stories of old or intimdated by all there is to know. Maybe, like me, you want to find a balance of using modern tools to create for us, while still growing and cultivating our own skillset. 
+
+Today I hope to help you do just that. Because in today's modern world...
 -->
 
 ---
@@ -35,15 +42,21 @@ layout: statement
 
 # In today's modern world, CSS is a system of intent.
 
+<Footer />
+
 <!-- 
-...CSS is a system of intent. This world isn't a fantasy - it's live in all modern browsers and broadly available. This is what I want you to come away with today, a new way of looking at CSS fundamentals that rekindle the joy of building things for the web. To showcase these, we're going to build out a dashboard for a small apothecary shop, one ingredient at a time.
+...CSS is a system of intent. 
+
+The features we'll cover today aren't a fantasy - they're available in all modern browsers and baseline widely available. My goal is that by the end of our time together, you'll walk away with a new way of looking at some fundamental CSS capabilities that spark joy in building for the web. 
+
+To showcase these, we're going to create a dashboard for a small apothecary shop called Sage & Sundry. Let's go one ingredient at a time.
 -->
 
 ---
 
 # Custom Properties
 
-Variables we define and reuse throughout our stylesheets. More consistency, less repetition.
+Variables we can define and reuse. More consistency, less repetition.
 
 <div class="grid grid-cols-2 gap-4 items-center">
 
@@ -51,23 +64,23 @@ Variables we define and reuse throughout our stylesheets. More consistency, less
 
 ```css
 :root {
-    /* Primitive color values */
-    --text-color: #2D1B11;
-    --spring-primary-color: #FFCAD4;
-    --spring-secondary-color: #F093A1;
-    --spring-accent-color: #BDA8C7;
+  /* Declare the variable */
+  --spring-primary-color: #FFCAD4;
+  /* Then use it in other variables */
+  --primary-color: var(--spring-primary-color);
+}
 
-    /* Semantic color properties */
-    --primary-color: var(--spring-primary-color);
-    --secondary-color: var(--spring-secondary-color);
-    --accent-color: var(--spring-accent-color);
-  }
+/* Or directly within components */
+main {
+  background: var(--primary-color);
+}
 
-/* Then in our component/page */
-  header {
-    background: var(--accent-color);
-    border-bottom: 2px solid var(--text-color);
-  }
+/* Can also give the browser more info */
+@property --primary-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffcad4;
+}
 ```
 
 </div>
@@ -80,9 +93,16 @@ Variables we define and reuse throughout our stylesheets. More consistency, less
 
 <v-click> We have the tokens. Now let's make sure our layout understands where it is. </v-click>
 
+<Footer />
+
 <!-- 
 widely avail, 96%
-Our first ingredient is custom properties. CSS now has a way to declare it's own variables and let us reuse them across our styles. They always start with two dashes, then whatever name we want. And when we want to use them, we wrap that name in the var() function. And now, if one of our colors changes, we have a single place we need to put the new value and all of the places we're using it will update automatically.
+
+We'll start at the very beginning. A very good place to start - and also with something a number of you might have seen before. These are custom properties. CSS now has a way to let us declare reusable values that we can share across our styles. 
+
+They always start with two dashes and a name. Then when we want to use that value, we call it with the var() function. The beauty of these is in simplification. We have one place now where we can store our colors or fonts or anything we find ourselves reusing or wanting to change easily. We can sprinkle these throughout our site, and with small updates our whole page will change. 
+
+These are a fundamental building block of our intentional CSS foundation. 
 
 With our tokens in place, next we'll focus on our layout and how it can know the amount of space it should take up.
 -->
@@ -93,6 +113,8 @@ With our tokens in place, next we'll focus on our layout and how it can know the
 
 The component knows its space. Now let's have the dashboard respond to its own state.
 
+<Footer />
+
 <!-- 
 widely avail, size queries 92%
 -->
@@ -102,6 +124,8 @@ widely avail, size queries 92%
 # The `:has` Selector
 
 We have tokens, responsive components, and parent logic. Let's talk about keeping all of it organized.
+
+<Footer />
 
 <!-- 
 widely avail, 93%
@@ -136,6 +160,8 @@ widely avail, 93%
 
 <v-click>The shop is built. Now for the things that make it feel alive.</v-click>
 
+<Footer />
+
 <!-- 
 widely avail, 94%
 Cascade layers give us a lot of our power to better handle how styles affect each other. You've probably heard the word cascade a ton, it is what the C in CSS stands for after all. At a high view, the cascade is the idea of styles starting from a point and then layering one on top of the other to replace each other and build out how our sites look. Browser defaults get applied first, then a browser user's individual settings if they have some, then our authored styles. 
@@ -161,6 +187,8 @@ So now we have the majority of our shop designed and laid out! Now let's add a l
 
 State changes feel intentional. But what about elements that need to stay physically connected?
 
+<Footer />
+
 <!-- 
 newly avail, 88% single-page
 -->
@@ -171,19 +199,26 @@ newly avail, 88% single-page
 
 Tethered elements are the browser's job, not yours.
 
+<Footer />
+
 <!-- 
 newly avail, 82%
 -->
 
 ---
 
+<Footer />
 <!-- full dashboard view -->
 
+---
+layout: center
 ---
 
 # Closing Thoughts
 
 Stop fighting the browser. Collaborate with it.
+
+<Footer />
 
 <!-- 
 
