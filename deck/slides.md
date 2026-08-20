@@ -11,7 +11,6 @@ comark: true
 duration: 25min
 transition: fade
 class: text-center
-canvasWidth: 1024
 ---
 
 <!-- markdownlint-disable -->
@@ -27,9 +26,11 @@ Photo by <a href="https://unsplash.com/@anitaaustvika?utm_source=unsplash&utm_me
 </p>
 
 <!--
-Welcome everyone, and thanks so much for being here. My name is Linda, and I'm a software engineer. 
+What do I want to convey for this slide? 
+- welcome, I'm linda, i write software and play games.
+- discuss showing a new way of thinking about css; not as something that just sets fonts and colors and that you have to wrestle with, but as something that helps you describe the meaning, behavior, and connection to parts of your code and letting the browser handle implementing that. 
 
-Today we're going to get a little witchy and learn some CSS magic.
+Welcome everyone, and thanks so much for being here. My name is Linda, and today we're going to get a little witchy and learn some CSS magic.
 
 You might know some of the old magic, hacking styles to create the designs you want. Or you might be newer to the craft, scared from horror stories of old or intimdated by all there is to know. Maybe, like me, you want to find a balance of using modern tools to create for us, while still growing and cultivating our own skillset. 
 
@@ -40,11 +41,15 @@ Today I hope to help you do just that. Because in today's modern world...
 layout: statement
 ---
 
-# In today's modern world, CSS is a system of intent.
+# CSS is a system of intent.
 
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+- the actual statement. ties in to the intro.
+- baseline widely available, what that means, and what we're going to build to showcase how they work
+
 ...CSS is a system of intent. 
 
 The features we'll cover today aren't a fantasy - they're available in all modern browsers and baseline widely available. My goal is that by the end of our time together, you'll walk away with a new way of looking at some fundamental CSS capabilities that spark joy in building for the web. 
@@ -53,14 +58,22 @@ To showcase these, we're going to create a dashboard for a small apothecary shop
 -->
 
 ---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.9
+---
+
+<!-- 
+What do I want to convey for this slide? 
+- showoff the project early, lead into the next few pieces
+
+-->
+
+---
 
 # Custom Properties
 
-Variables we can define and reuse. More consistency, less repetition.
-
-<div class="grid grid-cols-2 gap-4 items-center">
-
-<div>
+Declare once, reuse everywhere.
 
 ```css
 :root {
@@ -83,19 +96,16 @@ main {
 }
 ```
 
-</div>
-
-<div>
-<img src="./assets/images/03-custom-properties.png" alt="" />
-</div>
-
-</div>
-
-<v-click> We have the tokens. Now let's make sure our layout understands where it is. </v-click>
-
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+- you can write variables now!
+- easier to maintain, write once reuse everywhere
+- can describe the type of variable it is so the browser can use it how you'd expect (like transitions and the types of values it should expect)
+- can use as values for functions and other properties, just not media queries
+
+
 widely avail, 96%
 
 We'll start at the very beginning. A very good place to start - and also with something a number of you might have seen before. These are custom properties. CSS now has a way to let us declare reusable values that we can share across our styles. 
@@ -111,23 +121,64 @@ With our tokens in place, next we'll focus on our layout and how it can know the
 
 # Container Queries & Logical Properties
 
-The component knows its space. Now let's have the dashboard respond to its own state.
+Design for flow, not dimensions.
+
+```css
+aside {
+  /* Shortcut - name and then type */
+  container: in-season / inline-size;
+} 
+
+/* Looks just like a media query, but based on the container! */
+@container in-season (inline-size >= 26cqi) {
+  .extra-details { 
+    display: block;
+  }
+}
+
+li {
+  /* Start or end for a single side, neither for both sides */
+  padding-inline-end: var(--space-4);
+  padding-block: var(--space-4);
+}
+```
+
 
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+- defining the container defines the context, tells the browser we'll need to query this
+- containers can't query themselves, so wrap around what you want to be adjusted
+- simplifies your queries, since you can now adjust based on the container's size instead of the viewports. so some styles can get reused on mobile and desktop without having to write a ton of queries; also lets your queries be simpler, since you're only worrying about the space your container takes up and not what size the window is
+- containers can't be sized from their contents - making it a container loses it's ability to tell the inner contents to size based off it, so you need to be more explicit for those inner details
+- logical properties relate to the flow of the content, not physical dimensions
+- block flow is the direction of content blocks. inline flow is how text flows in the content
+- provides support for internationalization and real content adjustments
+
 widely avail, size queries 92%
 -->
+
+---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.9
+---
+
+<!-- actually record this and make it a demo; not sure how flipping back and forth between the code and the site will be since it'll cause a reload, unless you want to add a toggle button to change it
+show the sidebar toggle and rtl transformation -->
 
 ---
 
 # The `:has` Selector
 
-We have tokens, responsive components, and parent logic. Let's talk about keeping all of it organized.
 
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+
+
 widely avail, 93%
 -->
 
@@ -158,11 +209,12 @@ widely avail, 93%
 }
 ```
 
-<v-click>The shop is built. Now for the things that make it feel alive.</v-click>
-
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+
+
 widely avail, 94%
 Cascade layers give us a lot of our power to better handle how styles affect each other. You've probably heard the word cascade a ton, it is what the C in CSS stands for after all. At a high view, the cascade is the idea of styles starting from a point and then layering one on top of the other to replace each other and build out how our sites look. Browser defaults get applied first, then a browser user's individual settings if they have some, then our authored styles. 
 
@@ -185,11 +237,13 @@ So now we have the majority of our shop designed and laid out! Now let's add a l
 
 # View Transitions
 
-State changes feel intentional. But what about elements that need to stay physically connected?
 
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+
+
 newly avail, 88% single-page
 -->
 
@@ -197,18 +251,24 @@ newly avail, 88% single-page
 
 # Anchor Positioning
 
-Tethered elements are the browser's job, not yours.
-
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+
+
 newly avail, 82%
 -->
 
 ---
 
 <Footer />
-<!-- full dashboard view -->
+<!-- 
+What do I want to convey for this slide? 
+
+
+full dashboard view 
+-->
 
 ---
 layout: center
@@ -221,6 +281,8 @@ Stop fighting the browser. Collaborate with it.
 <Footer />
 
 <!-- 
+What do I want to convey for this slide? 
+
 
 -->
 

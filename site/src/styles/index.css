@@ -126,13 +126,13 @@
   }
 
   main {
-    --season-width: 24rem;
+    --season-width: 18rem;
     display: grid;
     grid-template-columns: var(--season-width) 1fr;
     gap: var(--space-16) var(--space-4);
 
     &.season-expanded {
-      --season-width: 32rem;
+      --season-width: 26rem;
     }
   }
 
@@ -171,7 +171,7 @@
           display: none;
           transition: display 0.3s ease-in-out;
 
-          @container in-season (inline-size >= 28cqi) {
+          @container in-season (inline-size >= 26cqi) {
             display: block;
           }
         }
@@ -219,7 +219,7 @@
 
       & .batch-pill {
         padding-inline-start: var(--space-4);
-        inline-size: 10rem;
+        inline-size: 8rem;
       }
 
       & .batch-detail {
