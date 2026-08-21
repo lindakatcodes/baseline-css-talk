@@ -71,7 +71,7 @@ What do I want to convey for this slide?
 
 ---
 
-# Custom Properties
+## Custom Properties
 
 Declare once, reuse everywhere.
 
@@ -119,7 +119,7 @@ With our tokens in place, next we'll focus on our layout and how it can know the
 
 ---
 
-# Container Queries & Logical Properties
+## Container Queries & Logical Properties
 
 Design for flow, not dimensions.
 
@@ -170,31 +170,67 @@ show the sidebar toggle and rtl transformation -->
 
 ---
 
-# The `:has` Selector
+## The Has Selector
 
+Style based on conditions and relationships.
+
+```css
+body {
+  /* We declared our property type, so transitions just work */
+  transition:
+    --primary-color 0.3s ease-in-out,
+    --secondary-color 0.3s ease-in-out,
+}
+
+/* The body changes based on the selected radio input */
+body:has(input[value="summer"]:checked) {
+  --primary-color: var(--summer-primary-color);
+  --secondary-color: var(--summer-secondary-color);
+}
+```
+
+```html
+<div>
+  <input type="radio" id="summer" name="season" value="summer" />
+  <label for="summer">Summer</label>
+</div>
+```
 
 <Footer />
 
 <!-- 
 What do I want to convey for this slide? 
-
+- a family selector; takes the first selector, and if that element has whatever's in the () it styles the first selector
+- can look for any descendant, or use combinators to find direct children or siblings
+- can also combine with out pseudo classes like not, so you can use negative relations too
+- needs a solid base for the relationship though; can't use pseudo elements (like before or after) because they're often only conditionally registered. it needs to have a reliable base to start from
 
 widely avail, 93%
 -->
 
 ---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.9
+---
 
-# Cascade Layers
+<!-- toggle the seasons, make sure to give each change a second or two in order to breathe and really let it sink in -->
+
+---
+
+## Cascade Layers
+
+Order is everything. We control that now.
 
 ```css
 /* Set the ordering first to guarantee our intention. */
 @layer reset, base, layout, theme;
 /* Can import other stylesheets and assign to a layer. */
 @import "reset.css" layer(reset);
-/* Then we write the actual style rules where they make sense. */
+/* Or describe the layers in the file itself. */
 @layer base {
   :root {
-    /* ...our tokens from the last slide */
+    /* ...our custom properties, fonts, etc. */
   }
 }
 @layer layout {
@@ -205,7 +241,7 @@ widely avail, 93%
   }
 }
 @layer theme {
-  /* ...the header from the last slide */
+  /* ...colors, borders, style-related values */
 }
 ```
 
@@ -213,12 +249,17 @@ widely avail, 93%
 
 <!-- 
 What do I want to convey for this slide? 
-
+- we get to control how all the styles we bring in layer and cascade now
+- order is everything; often best practice to declare the order by name first, then write the actual layers later so you don't have to remember the order
+- anything not in a layer gets highest priority, it's the top level
+- can reuse layers across components, the different values get appended to the existing layer
+- means we need important and long class names even less now; doesn't solve scoping benefits and important has some extra caveats to look up, but this does solve most of the biggest reasons we reached for those
+- can import a stylesheet and assign it to a layer; huge help for component libraries and being able to easily overwrite parts of them
 
 widely avail, 94%
 Cascade layers give us a lot of our power to better handle how styles affect each other. You've probably heard the word cascade a ton, it is what the C in CSS stands for after all. At a high view, the cascade is the idea of styles starting from a point and then layering one on top of the other to replace each other and build out how our sites look. Browser defaults get applied first, then a browser user's individual settings if they have some, then our authored styles. 
 
-What layers gives us is a way to apply this same organiziational effect to all of the styles in our app. Where before everything was sitting at the same layer of specificity, now we have the power to determine what should be more and less important, without having to resort to the important flag our super long class names and identifiers.
+What layers gives us is a way to apply this same organiziational effect to all of the styles in our app. Where before everything was sitting at the same layer of specificity, now we have the power to determine what should be more and less important, without having to resort to the important flag or super long class names and identifiers.
 
 Order is the name of the game here, so you'll often see a single definition at the start of the first CSS file that gets imported into your app. The first time a layer's name is seen determines the order it goes in, and the first one is the easiest to overwrite so that order is important. Then, once the order is declared, we can start assigning values to each layer.
 
@@ -235,7 +276,7 @@ So now we have the majority of our shop designed and laid out! Now let's add a l
 
 ---
 
-# View Transitions
+## View Transitions
 
 
 <Footer />
@@ -248,8 +289,17 @@ newly avail, 88% single-page
 -->
 
 ---
+layout: iframe
+url: http://localhost:4321#batches
+zoom: 0.9
+---
 
-# Anchor Positioning
+<!--  -->
+
+
+---
+
+## Anchor Positioning
 
 <Footer />
 
@@ -261,22 +311,21 @@ newly avail, 82%
 -->
 
 ---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.9
+---
 
-<Footer />
 <!-- 
 What do I want to convey for this slide? 
-
-
-full dashboard view 
+- show the site again and do some wrapping up, refresh on all the things we learned and how they build on each other to help us build intentionally, and all the great benefits we get of using these new fundamental skills, like baked in accessibility and performance and the ability to separate concerns between what the site looks like and the things it can do. we still need and want javascript often - but we don't need it to do all the heavy lifting. css can hold it's own now.
 -->
 
 ---
-layout: center
+layout: statement
 ---
 
-# Closing Thoughts
-
-Stop fighting the browser. Collaborate with it.
+# Stop fighting the browser. Collaborate with it.
 
 <Footer />
 
