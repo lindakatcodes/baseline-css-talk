@@ -275,15 +275,77 @@ So now we have the majority of our shop designed and laid out! Now let's add a l
 -->
 
 ---
+layout: two-cols-header
+---
 
 ## View Transitions
 
+Somehow this conveys intent too.
+
+::left::
+
+```js
+function back(id: string) {
+  withTransition(() => {
+    const detail = document.getElementById(`batch-detail-${id}`);
+    detail.hidden = true;
+    batchList.hidden = false;
+    document.documentElement.dataset.view = "dashboard";
+  });
+}
+
+function withTransition(swap: () => void) {
+  if (!document.startViewTransition) return swap();
+  document.startViewTransition(swap);
+}
+
+batchesSection.addEventListener("click", (event) => {
+  const target = event.target as HTMLElement;
+  const backBtn = target.closest("[data-back]");
+  if (backBtn) back(backBtn.dataset.back || "0");
+});
+```
+
+::right::
+
+```css
+::view-transition-group(batch-panel) {
+  animation: none;
+  overflow: clip;
+}
+
+.batches {
+  view-transition-name: batch-panel;
+}
+
+html[data-view="dashboard"] {
+  &::view-transition-new(batch-panel) {
+    animation: 350ms ease-out both slide-from-left;
+  }
+  &::view-transition-old(batch-panel) {
+    animation: 350ms ease-in both slide-to-right;
+  }
+}
+```
 
 <Footer />
 
+<style>
+.two-cols-header {
+  column-gap: 10px;
+  /* grid-template-columns: 50% 50%; */
+}
+
+</style>
+
 <!-- 
 What do I want to convey for this slide? 
-
+- same-document is what's baseline available, uses js to swap
+- cross-document is coming soon, supports multi page and uses css
+- document.startViewTransition calls the function that should start the swap
+- works by the browser taking snapshots of the old/current page and the new/incoming page, then by default doing a cross fade, turning the old opacity down and the new one up
+- can change this effect by using css animations to create your own
+- 
 
 newly avail, 88% single-page
 -->
@@ -299,13 +361,51 @@ zoom: 0.9
 
 ---
 
-## Anchor Positioning
+## Popovers & Anchor Positioning
+
+Tether elements to each other, and let their relationship guide their positioning.
+
+```html
+<button class="batch-pill" popovertarget=`batch-details-${data.season}-${index}`>
+  {ingredient.batchCount} Batches
+</button>
+<div
+  id=`batch-details-${data.season}-${index}`
+  class="batch-detail"
+  popover
+>
+  {ingredient.batchNames.map((name) => (
+    <p>❧ {name}</p>
+  ))}
+</div>
+```
+
+```css
+.batch-detail {
+  position-area: inline-start;
+  margin-inline-end: 0.5rem;
+  padding: var(--space-4);
+}
+```
 
 <Footer />
 
 <!-- 
 What do I want to convey for this slide? 
-
+- popovers give you a way to display an element over the rest of your page content
+- at it's simplest, you give an element the popover attribute and an id. the browser will auto-hide it
+- then you pick a button/control to activate it, and give that the popovertarget attribute set to the popover's id. by default it works as a toggle, showing and hiding on each click. 
+- you can set it to only show or only hide though
+- also by default you get some nice state - you can click outside it to light dismiss it, or press esc to exit. also only one popover is visible at a tie, so clicking a button for another will auto-dismiss the previous one.
+- it also handles keyboard focus and assistive technology details for you
+- the other thing is it creates an implicit anchor reference between our popover content and it's control - this lets us use anchor positioning to decide where we want our popover content to show up
+- by default popovers show up in the middle of the screen. but we can adjust this because it gives us anchor positioning since we've created that relatinoship between the two
+- anchor positioning lets us position an item relative to its invoker, in this case our popover relative to the button that toggles it
+- in this case, we only need to set the positioning of our popover. if this were an explicit anchor grouping, where we wanted to tie two elements together that aren't already related, we'd specifiy an anchor-name and position-anchor value to show the relationship. 
+- to make an explicit relationship, we give the anchor itself a name, which like custom properties will start with two dashes. 
+- then the item we want to teather to our anchor needs to have a fixed or absolute position, and use the position-anchor property that provides the name of the anchor it's tied to. then we can again position it
+- a good default way to position or element is using position-area, which works like a 3x3 grid where we can tell it where we want it to go. it works with physical or logical properties. you can define two options to put it squarely in that grid area, or you can say just one and the other will act like a span and fill the remaining space. 
+- there's also a function you can use to get more granular with your positioning
 
 newly avail, 82%
 -->
