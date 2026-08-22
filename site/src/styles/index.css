@@ -53,7 +53,9 @@
     --space-2: 0.25rem; /* 4px */
     --space-4: 0.5rem; /* 8px */
     --space-8: 1rem; /* 16px */
+    --space-12: 1.5rem; /* 24px */
     --space-16: 2rem; /* 32px */
+    --space-20: 2.5rem; /* 40px */
   }
 
   body {
@@ -90,40 +92,7 @@
 
 /* Layout is our page structure, how we want the elements to be organized on the screen and the space they should have and give each other */
 @layer layout {
-  header {
-    display: flex;
-    align-items: center;
-    padding-block: var(--space-4);
-    padding-inline: var(--space-16);
-
-    & h1 {
-      flex-grow: 1;
-    }
-
-    & .season-options {
-      display: flex;
-      gap: var(--space-4);
-
-      & legend {
-        padding-inline: var(--space-2);
-      }
-
-      & div {
-        inline-size: 5rem;
-        padding: var(--space-2) var(--space-4);
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        & input {
-          appearance: none;
-          position: absolute;
-          top: 50%;
-          left: 0;
-        }
-      }
-    }
-  }
+  
 
   main {
     --season-width: 18rem;
@@ -316,24 +285,7 @@
     --accent-color: var(--winter-accent-color);
   }
 
-  header {
-    background: var(--accent-color);
-    border-bottom: 2px solid var(--text-color);
-
-    & .season-options {
-      border: 2px ridge var(--primary-color);
-
-      & legend {
-        font-size: var(--fsize-small);
-      }
-
-      & div:has(:checked) label {
-        font-weight: bold;
-        text-decoration: 2px solid underline var(--secondary-color);
-        text-underline-offset: var(--space-4);
-      }
-    }
-  }
+  
 
   main {
     background: var(--primary-color);

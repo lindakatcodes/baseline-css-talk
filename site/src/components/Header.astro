@@ -21,6 +21,68 @@
   </fieldset>
 </header>
 
+<style>
+  @layer layout {
+    header {
+      display: flex;
+      align-items: center;
+      padding-block: var(--space-8);
+      padding-inline: var(--space-20);
+
+      & h1 {
+        flex-grow: 1;
+      }
+
+      & .season-options {
+        display: flex;
+        gap: var(--space-4);
+        margin-block-end: var(--space-2);
+
+        & legend {
+          padding-inline: var(--space-2);
+        }
+
+        & div {
+          inline-size: 5rem;
+          padding: var(--space-2) var(--space-4);
+          position: relative;
+          display: flex;
+          justify-content: center;
+
+          & input {
+            appearance: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @layer theme {
+    header {
+      background: var(--accent-color);
+      border-bottom: 2px solid var(--text-color);
+
+      & .season-options {
+        border: 2px double var(--primary-color);
+        border-radius: var(--space-2);
+
+        & legend {
+          font-size: var(--fsize-small);
+        }
+
+        & div:has(:checked) label {
+          font-weight: bold;
+          text-decoration: 2px solid underline var(--secondary-color);
+          text-underline-offset: var(--space-4);
+        }
+      }
+    }
+  }
+</style>
+
 <script>
   const main = document.querySelector("main");
   const seasonToggle = document.querySelector("#season-toggle");
