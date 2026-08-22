@@ -13,17 +13,13 @@ const { seasonalData } = Astro.props;
   {
     seasonalData.map((data) => (
       <table data-season={data.season}>
-        <colgroup>
-          <col style="width: 40%" />
-          <col style="width: 20%" />
-          <col style="width: 20%" />
-          <col style="width: 20%" />
-        </colgroup>
         <thead>
-          <th>Ingredient</th>
-          <th>Quantity</th>
-          <th>Freshness</th>
-          <th>Active batches</th>
+          <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Freshness</th>
+            <th>Active Batch Count</th>
+          </tr>
         </thead>
         <tbody>
           {data.currentIngredients.map((ingredient, index) => (
@@ -40,12 +36,23 @@ const { seasonalData } = Astro.props;
                 </button>
                 <div
                   id={`batch-details-${data.season}-${index}`}
-                  class="batch-detail"
+                  class="bp-popover"
                   popover
                 >
-                  {ingredient.batchNames.map((name) => (
-                    <p>❧ {name}</p>
-                  ))}
+                  <p class="popover-title">
+                    Batches using {ingredient.displayName}:
+                  </p>
+                  <div class="popover-list">
+                    {ingredient.batchCount === 0 ? (
+                      <p>No active batches</p>
+                    ) : (
+                      ingredient.batchNames.map((name) => (
+                        <p>
+                          <span>❧</span> {name}
+                        </p>
+                      ))
+                    )}
+                  </div>
                 </div>
               </td>
             </tr>
@@ -55,3 +62,105 @@ const { seasonalData } = Astro.props;
     ))
   }
 </section>
+
+<style>
+  @layer layout {
+    .pantry {
+      padding-inline: var(--space-12);
+      padding-block-start: var(--space-12);
+
+      & table {
+        table-layout: fixed;
+        inline-size: 90%;
+        border-collapse: collapse;
+        margin-block-start: var(--space-4);
+
+        & th {
+          padding-inline-start: var(--space-4);
+          padding-block-end: var(--space-4);
+        }
+
+        & td {
+          padding-inline-start: var(--space-4);
+          padding-block: var(--space-4);
+        }
+
+        & tr > :nth-child(1) {
+          text-align: left;
+          inline-size: 35%;
+        }
+
+        & tr > :nth-child(2),
+        tr > :nth-child(3) {
+          text-align: right;
+          inline-size: 20%;
+        }
+
+        & tr > :nth-child(4) {
+          text-align: center;
+          inline-size: 25%;
+        }
+      }
+
+      & table[data-season] {
+        display: none;
+      }
+
+      .batch-pill {
+        inline-size: 7rem;
+        padding-block: var(--space-2);
+      }
+
+      & .bp-popover {
+        position-area: inline-start;
+        margin-inline-end: 0.5rem;
+        padding: 0;
+
+        & .popover-title {
+          padding-inline: var(--space-6);
+          padding-block: var(--space-4);
+        }
+
+        & .popover-list {
+          padding-inline: var(--space-6);
+          padding-block: var(--space-4);
+
+          & p {
+            display: flex;
+            gap: var(--space-4);
+            padding-block-end: var(--space-2);
+          }
+        }
+      }
+    }
+  }
+
+  @layer theme {
+    tbody tr:nth-child(odd) {
+      background: color-mix(in srgb, var(--secondary-color) 25%, transparent);
+    }
+
+    .batch-pill {
+      background: var(--accent-color);
+      border: 1px outset var(--primary-color);
+      border-radius: var(--radius);
+    }
+
+    .bp-popover {
+      background: var(--secondary-color);
+      border: none;
+      border-radius: var(--radius);
+      box-shadow: 2px 2px 4px 1px
+        color-mix(in srgb, var(--text-color) 30%, transparent);
+
+      & .popover-title {
+        font-weight: bold;
+      }
+
+      & .popover-list {
+        background: var(--primary-color);
+        text-align: left;
+      }
+    }
+  }
+</style>

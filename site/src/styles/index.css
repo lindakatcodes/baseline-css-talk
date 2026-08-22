@@ -123,40 +123,6 @@
     display: revert;
   }
 
-  .pantry {
-    padding-inline: var(--space-8);
-    padding-block-start: var(--space-8);
-
-    & table {
-      inline-size: 100%;
-      table-layout: fixed;
-
-      & thead th {
-        text-align: left;
-      }
-
-      & th,
-      td {
-        padding-block: var(--space-2);
-      }
-
-      & .batch-pill {
-        padding-inline-start: var(--space-4);
-        inline-size: 8rem;
-      }
-
-      & .batch-detail {
-        position-area: inline-start;
-        margin-inline-end: 0.5rem;
-        padding: var(--space-4);
-      }
-    }
-
-    & table[data-season] {
-      display: none;
-    }
-  }
-
   .batches {
     padding-inline: var(--space-8);
     padding-block-end: var(--space-16);
@@ -243,18 +209,6 @@
     background: var(--primary-color);
     box-shadow: inset 0 2px 2px 0
       color-mix(in srgb, var(--text-color) 30%, transparent);
-  }
-
-  th,
-  td {
-    border-bottom: 1px solid var(--text-color);
-  }
-
-  .batch-pill {
-    background: var(--accent-color);
-    border: 1px outset var(--accent-color);
-    border-radius: var(--radius);
-    text-align: start;
   }
 
   .batch-detail {
