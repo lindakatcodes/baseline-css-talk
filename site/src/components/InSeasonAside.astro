@@ -1,0 +1,48 @@
+---
+import type { SeasonalDataItem } from "../types/types";
+
+interface Props {
+  seasonalData: SeasonalDataItem[];
+}
+
+const { seasonalData } = Astro.props;
+---
+
+<aside class="in-season">
+  <div class="title">
+    <h2>In season</h2>
+    <button id="season-toggle" aria-pressed="false">Details ⇆</button>
+  </div>
+  {
+    seasonalData.map((data) => (
+      <ul data-season={data.season}>
+        <li>
+          <div class="key-details">
+            <p>Name</p>
+            <p>Harvest Window</p>
+          </div>
+        </li>
+        {data.currentHerbs.map((herb) => (
+          <li>
+            <div class="key-details">
+              <p>{herb.name}</p>
+              <p>{herb.harvestWindow}</p>
+            </div>
+            <div class="extra-details">
+              <p>{herb.botanicalName}</p>
+              <p>{herb.description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    ))
+  }
+</aside>
+
+<script>
+  // text flip demo
+  const seasonalContainer = document.querySelector(".in-season") as HTMLElement;
+  // setTimeout(() => {
+  //   seasonalContainer.dir = "rtl";
+  // }, 4000);
+</script>

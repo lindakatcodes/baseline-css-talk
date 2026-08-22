@@ -1,0 +1,55 @@
+---
+import type { SeasonalDataItem } from "../types/types";
+import BatchList from "../components/BatchList.astro";
+import BatchDetail from "../components/BatchDetail.astro";
+
+interface Props {
+  seasonalData: SeasonalDataItem[];
+}
+
+const { seasonalData } = Astro.props;
+---
+
+<section class="batches" id="batches">
+  <h2>Actively Cooking</h2>
+  <BatchList seasonalData={seasonalData} />
+  <BatchDetail seasonalData={seasonalData} />
+</section>
+
+<script>
+  const batchList = document.querySelector(".batch-list") as HTMLElement;
+  const batchesSection = document.querySelector(".batches") as HTMLElement;
+
+  function open(id: string) {
+    withTransition(() => {
+      const detailPanel = document.getElementById(
+        `batch-detail-${id}`,
+      ) as HTMLElement;
+      batchList.hidden = true;
+      detailPanel.hidden = false;
+      document.documentElement.dataset.view = "detail";
+    });
+  }
+
+  function back(id: string) {
+    withTransition(() => {
+      document.getElementById(`batch-detail-${id}`)!.hidden = true;
+      batchList.hidden = false;
+      document.documentElement.dataset.view = "dashboard";
+    });
+  }
+
+  function withTransition(swap: () => void) {
+    if (!document.startViewTransition) return swap();
+    document.startViewTransition(swap);
+  }
+
+  batchesSection.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (!target) return;
+    const card = target.closest("[data-batch]") as HTMLElement | null;
+    const backBtn = target.closest("[data-back]") as HTMLElement | null;
+    if (card) open(card.dataset.batch || "0");
+    if (backBtn) back(backBtn.dataset.back || "0");
+  });
+</script>

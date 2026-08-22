@@ -1,30 +1,31 @@
 ---
-import { getCollection } from "astro:content";
+import type { SeasonalDataItem } from "../types/types";
 
-const batches = (await getCollection("batches")).map((entry) => entry.data);
-const seasons = ["spring", "summer", "autumn", "winter"];
+interface Props {
+  seasonalData: SeasonalDataItem[];
+}
+
+const { seasonalData } = Astro.props;
 ---
 
 {
-  seasons.map((season) => {
-    return batches
-      .filter((batch) => batch.season === season)
-      .map((batch) => (
-        <div class="batch-list-detail" id={`batch-detail-${batch.id}`} hidden>
-          <button data-back={batch.id}>{"❮"}</button>
-          <h3>{batch.name}</h3>
-          <div class="details">
-            <p>{batch.form}</p>
-            <p>{batch.daysToMake}</p>
-            <p>{batch.daysRemaining}</p>
-          </div>
-          <p>{batch.description}</p>
-          <ul>
-            {batch.ingredientIds.map((ingredient) => (
-              <li>{ingredient}</li>
-            ))}
-          </ul>
+  seasonalData.map((data) => {
+    return data.currentBatches.map((batch) => (
+      <div class="batch-list-detail" id={`batch-detail-${batch.id}`} hidden>
+        <button data-back={batch.id}>{"❮"}</button>
+        <h3>{batch.name}</h3>
+        <div class="details">
+          <p>{batch.form}</p>
+          <p>{batch.daysToMake}</p>
+          <p>{batch.daysRemaining}</p>
         </div>
-      ));
+        <p>{batch.description}</p>
+        <ul>
+          {batch.ingredientIds.map((ingredient) => (
+            <li>{ingredient}</li>
+          ))}
+        </ul>
+      </div>
+    ));
   })
 }

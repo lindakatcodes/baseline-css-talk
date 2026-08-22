@@ -1,9 +1,22 @@
-export type Season = "spring" | "summer" | "autumn" | "winter";
+import { type CollectionEntry } from "astro:content";
 
-export type BatchForm =
-  | "Tea"
-  | "Tincture"
-  | "Infused Oil"
-  | "Salve"
-  | "Syrup"
-  | "Honey Infusion";
+export type Season = "spring" | "summer" | "autumn" | "winter";
+export type Herb = CollectionEntry<"herbs">["data"];
+export type Staple = CollectionEntry<"staples">["data"];
+export type Batch = CollectionEntry<"batches">["data"];
+
+export type SeasonalIngredient = {
+  displayName: string;
+  seasons: string[];
+  stockLevel: number;
+  freshnessDays: number;
+  batchCount: number;
+  batchNames: string[];
+};
+
+export type SeasonalDataItem = {
+  season: Season;
+  currentHerbs: Herb[];
+  currentBatches: Batch[];
+  currentIngredients: SeasonalIngredient[];
+};

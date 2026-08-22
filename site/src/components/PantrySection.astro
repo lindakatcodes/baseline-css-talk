@@ -1,0 +1,57 @@
+---
+import type { SeasonalDataItem } from "../types/types";
+
+interface Props {
+  seasonalData: SeasonalDataItem[];
+}
+
+const { seasonalData } = Astro.props;
+---
+
+<section class="pantry">
+  <h2>Ingredients in Stock</h2>
+  {
+    seasonalData.map((data) => (
+      <table data-season={data.season}>
+        <colgroup>
+          <col style="width: 40%" />
+          <col style="width: 20%" />
+          <col style="width: 20%" />
+          <col style="width: 20%" />
+        </colgroup>
+        <thead>
+          <th>Ingredient</th>
+          <th>Quantity</th>
+          <th>Freshness</th>
+          <th>Active batches</th>
+        </thead>
+        <tbody>
+          {data.currentIngredients.map((ingredient, index) => (
+            <tr>
+              <td>{ingredient.displayName}</td>
+              <td>{ingredient.stockLevel}</td>
+              <td>{ingredient.freshnessDays} Days</td>
+              <td>
+                <button
+                  class="batch-pill"
+                  popovertarget={`batch-details-${data.season}-${index}`}
+                >
+                  {ingredient.batchCount} Batches
+                </button>
+                <div
+                  id={`batch-details-${data.season}-${index}`}
+                  class="batch-detail"
+                  popover
+                >
+                  {ingredient.batchNames.map((name) => (
+                    <p>❧ {name}</p>
+                  ))}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ))
+  }
+</section>

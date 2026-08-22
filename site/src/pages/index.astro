@@ -1,18 +1,18 @@
 ---
 import "../styles/index.css";
-import { getCollection, type CollectionEntry } from "astro:content";
-import BatchList from "../components/BatchList.astro";
-import BatchDetail from "../components/BatchDetail.astro";
-
-type Herb = CollectionEntry<"herbs">["data"];
-type Staple = CollectionEntry<"staples">["data"];
+import { getCollection } from "astro:content";
+import type { Season, SeasonalDataItem } from "../types/types";
+import Header from "../components/Header.astro";
+import InSeasonAside from "../components/InSeasonAside.astro";
+import PantrySection from "../components/PantrySection.astro";
+import BatchesSection from "../components/BatchesSection.astro";
 
 const herbs = (await getCollection("herbs")).map((entry) => entry.data);
 const staples = (await getCollection("staples")).map((entry) => entry.data);
 const batches = (await getCollection("batches")).map((entry) => entry.data);
-const seasons = ["spring", "summer", "autumn", "winter"];
+const seasons: Season[] = ["spring", "summer", "autumn", "winter"];
 
-const seasonalData = seasons.map((season) => {
+const seasonalData: SeasonalDataItem[] = seasons.map((season) => {
   const currentHerbs = herbs.filter((herb) => herb.season === season);
   const currentBatches = batches.filter((batch) => batch.season === season);
 
@@ -24,15 +24,8 @@ const seasonalData = seasons.map((season) => {
       .filter((batch) => batch.ingredientIds.includes(id))
       .map((batch) => batch.name);
 
-  const currentIngredients: Array<{
-    displayName: string;
-    seasons: string[];
-    stockLevel: number;
-    freshnessDays: number;
-    batchCount: number;
-    batchNames: string[];
-  }> = [
-    ...currentHerbs.map((herb: Herb) => ({
+  const currentIngredients = [
+    ...currentHerbs.map((herb) => ({
       displayName: herb.pantryName,
       seasons: [herb.season],
       stockLevel: herb.stockLevel,
@@ -40,7 +33,7 @@ const seasonalData = seasons.map((season) => {
       batchCount: batchCountFor(herb.id),
       batchNames: batchDetails(herb.id),
     })),
-    ...staples.map((staple: Staple) => ({
+    ...staples.map((staple) => ({
       displayName: staple.name,
       seasons: seasons,
       stockLevel: staple.stockLevel,
@@ -68,169 +61,11 @@ const seasonalData = seasons.map((season) => {
     <title>Sage & Sundry</title>
   </head>
   <body>
-    <header>
-      <h1>Sage & Sundry Apothecary</h1>
-      <fieldset class="season-options">
-        <legend>Current season:</legend>
-        <div>
-          <input
-            type="radio"
-            id="spring"
-            name="season"
-            value="spring"
-            checked
-          />
-          <label for="spring">Spring</label>
-        </div>
-        <div>
-          <input type="radio" id="summer" name="season" value="summer" />
-          <label for="summer">Summer</label>
-        </div>
-        <div>
-          <input type="radio" id="autumn" name="season" value="autumn" />
-          <label for="autumn">Autumn</label>
-        </div>
-        <div>
-          <input type="radio" id="winter" name="season" value="winter" />
-          <label for="winter">Winter</label>
-        </div>
-      </fieldset>
-    </header>
+    <Header />
     <main>
-      <aside class="in-season">
-        <div class="title">
-          <h2>In season</h2>
-          <button id="season-toggle" aria-pressed="false">Details ⇆</button>
-        </div>
-        {
-          seasonalData.map((data) => (
-            <ul data-season={data.season}>
-              <li>
-                <div class="key-details">
-                  <p>Name</p>
-                  <p>Harvest Window</p>
-                </div>
-              </li>
-              {data.currentHerbs.map((herb) => (
-                <li>
-                  <div class="key-details">
-                    <p>{herb.name}</p>
-                    <p>{herb.harvestWindow}</p>
-                  </div>
-                  <div class="extra-details">
-                    <p>{herb.botanicalName}</p>
-                    <p>{herb.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ))
-        }
-      </aside>
-      <section class="pantry">
-        <h2>Ingredients in Stock</h2>
-        {
-          seasonalData.map((data) => (
-            <table data-season={data.season}>
-              <colgroup>
-                <col style="width: 40%" />
-                <col style="width: 20%" />
-                <col style="width: 20%" />
-                <col style="width: 20%" />
-              </colgroup>
-              <thead>
-                <th>Ingredient</th>
-                <th>Quantity</th>
-                <th>Freshness</th>
-                <th>Active batches</th>
-              </thead>
-              <tbody>
-                {data.currentIngredients.map((ingredient, index) => (
-                  <tr>
-                    <td>{ingredient.displayName}</td>
-                    <td>{ingredient.stockLevel}</td>
-                    <td>{ingredient.freshnessDays} Days</td>
-                    <td>
-                      <button
-                        class="batch-pill"
-                        popovertarget={`batch-details-${data.season}-${index}`}
-                      >
-                        {ingredient.batchCount} Batches
-                      </button>
-                      <div
-                        id={`batch-details-${data.season}-${index}`}
-                        class="batch-detail"
-                        popover
-                      >
-                        {ingredient.batchNames.map((name) => (
-                          <p>❧ {name}</p>
-                        ))}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ))
-        }
-      </section>
-      <section class="batches" id="batches">
-        <h2>Actively Cooking</h2>
-        <BatchList />
-        <BatchDetail />
-      </section>
+      <InSeasonAside seasonalData={seasonalData} />
+      <PantrySection seasonalData={seasonalData} />
+      <BatchesSection seasonalData={seasonalData} />
     </main>
   </body>
 </html>
-
-<script>
-  // text flip demo
-  const seasonalContainer = document.querySelector(".in-season") as HTMLElement;
-  // setTimeout(() => {
-  //   seasonalContainer.dir = "rtl";
-  // }, 4000);
-
-  const main = document.querySelector("main");
-  const seasonToggle = document.querySelector("#season-toggle");
-
-  seasonToggle?.addEventListener("click", () => {
-    const expanded = main?.classList.toggle("season-expanded");
-    seasonToggle.setAttribute("aria-pressed", String(expanded));
-  });
-
-  const batchList = document.querySelector(".batch-list") as HTMLElement;
-  const batchesSection = document.querySelector(".batches") as HTMLElement;
-
-  function open(id: string) {
-    withTransition(() => {
-      const detailPanel = document.getElementById(
-        `batch-detail-${id}`,
-      ) as HTMLElement;
-      batchList.hidden = true;
-      detailPanel.hidden = false;
-      document.documentElement.dataset.view = "detail";
-    });
-  }
-
-  function back(id: string) {
-    withTransition(() => {
-      document.getElementById(`batch-detail-${id}`)!.hidden = true;
-      batchList.hidden = false;
-      document.documentElement.dataset.view = "dashboard";
-    });
-  }
-
-  function withTransition(swap: () => void) {
-    if (!document.startViewTransition) return swap();
-    document.startViewTransition(swap);
-  }
-
-  batchesSection.addEventListener("click", (event) => {
-    const target = event.target as HTMLElement;
-    if (!target) return;
-    const card = target.closest("[data-batch]") as HTMLElement | null;
-    const backBtn = target.closest("[data-back]") as HTMLElement | null;
-    if (card) open(card.dataset.batch || "0");
-    if (backBtn) back(backBtn.dataset.back || "0");
-  });
-</script>
