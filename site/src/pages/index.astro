@@ -174,7 +174,7 @@ const seasonalData = seasons.map((season) => {
           ))
         }
       </section>
-      <section class="batches">
+      <section class="batches" id="batches">
         <h2>Actively Cooking</h2>
         <BatchList />
         <BatchDetail />
@@ -206,7 +206,6 @@ const seasonalData = seasons.map((season) => {
       const detailPanel = document.getElementById(
         `batch-detail-${id}`,
       ) as HTMLElement;
-      console.log(batchList, detailPanel);
       batchList.hidden = true;
       detailPanel.hidden = false;
       document.documentElement.dataset.view = "detail";
@@ -231,7 +230,6 @@ const seasonalData = seasons.map((season) => {
     if (!target) return;
     const card = target.closest("[data-batch]") as HTMLElement | null;
     const backBtn = target.closest("[data-back]") as HTMLElement | null;
-    console.log(card, backBtn);
     if (card) open(card.dataset.batch || "0");
     if (backBtn) back(backBtn.dataset.back || "0");
   });
