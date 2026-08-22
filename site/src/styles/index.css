@@ -52,10 +52,13 @@
     --space-1: 0.125rem; /* 2px */
     --space-2: 0.25rem; /* 4px */
     --space-4: 0.5rem; /* 8px */
+    --space-6: 0.75rem; /* 12px */
     --space-8: 1rem; /* 16px */
     --space-12: 1.5rem; /* 24px */
     --space-16: 2rem; /* 32px */
     --space-20: 2.5rem; /* 40px */
+
+    --radius: 0.25rem;
   }
 
   body {
@@ -92,63 +95,14 @@
 
 /* Layout is our page structure, how we want the elements to be organized on the screen and the space they should have and give each other */
 @layer layout {
-  
-
   main {
-    --season-width: 18rem;
+    --season-width: 20rem;
     display: grid;
     grid-template-columns: var(--season-width) 1fr;
-    gap: var(--space-16) var(--space-4);
+    gap: var(--space-16);
 
     &.season-expanded {
       --season-width: 26rem;
-    }
-  }
-
-  aside {
-    container-type: inline-size;
-    container-name: in-season;
-    grid-row: 1 / span 2;
-    padding-inline: var(--space-8);
-    padding-block-start: var(--space-8);
-
-    & .title {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-
-      & h2 {
-        flex-grow: 1;
-      }
-    }
-
-    & ul {
-      list-style-type: none;
-      padding-inline-start: 0;
-      margin-block-start: var(--space-2);
-
-      & li {
-        padding-inline-end: var(--space-4);
-        padding-block: var(--space-4);
-
-        & .key-details {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        & .extra-details {
-          display: none;
-          transition: display 0.3s ease-in-out;
-
-          @container in-season (inline-size >= 26cqi) {
-            display: block;
-          }
-        }
-      }
-    }
-
-    & ul[data-season] {
-      display: none;
     }
   }
 
@@ -285,49 +239,10 @@
     --accent-color: var(--winter-accent-color);
   }
 
-  
-
   main {
     background: var(--primary-color);
     box-shadow: inset 0 2px 2px 0
       color-mix(in srgb, var(--text-color) 30%, transparent);
-  }
-
-  aside {
-    background: var(--secondary-color);
-    box-shadow: 2px 0 2px 0
-      color-mix(in srgb, var(--text-color) 30%, transparent);
-
-    & .title {
-      & button {
-        background: none;
-        border: 1px solid var(--text-color);
-        border-radius: 0.25rem;
-        padding-inline: var(--space-4);
-      }
-    }
-
-    & ul {
-      & li:first-child {
-        font-weight: bold;
-        border-top: none;
-      }
-
-      & li {
-        border-top: 1px solid var(--text-color);
-      }
-
-      & .key-details p:first-of-type {
-        @container in-season (inline-size >= 28cqi) {
-          font-weight: bold;
-        }
-      }
-
-      & .extra-details p:first-of-type {
-        font-style: italic;
-        font-size: var(--fsize-small);
-      }
-    }
   }
 
   th,
@@ -338,19 +253,19 @@
   .batch-pill {
     background: var(--accent-color);
     border: 1px outset var(--accent-color);
-    border-radius: 0.25rem;
+    border-radius: var(--radius);
     text-align: start;
   }
 
   .batch-detail {
     background: var(--secondary-color);
     border: 1px solid var(--text-color);
-    border-radius: 0.25rem;
+    border-radius: var(--radius);
   }
 
   .card {
     border: 2px solid var(--secondary-color);
-    border-radius: 0.25rem;
+    border-radius: var(--radius);
     box-shadow: 0 2px 4px color-mix(in srgb, var(--text-color) 15%, transparent);
     background: color-mix(
       in srgb,

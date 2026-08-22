@@ -15,29 +15,142 @@ const { seasonalData } = Astro.props;
   </div>
   {
     seasonalData.map((data) => (
-      <ul data-season={data.season}>
-        <li>
-          <div class="key-details">
-            <p>Name</p>
-            <p>Harvest Window</p>
-          </div>
-        </li>
-        {data.currentHerbs.map((herb) => (
+      <div class="inseason-wrapper">
+        <ul data-season={data.season}>
           <li>
             <div class="key-details">
-              <p>{herb.name}</p>
-              <p>{herb.harvestWindow}</p>
-            </div>
-            <div class="extra-details">
-              <p>{herb.botanicalName}</p>
-              <p>{herb.description}</p>
+              <p>Name</p>
+              <p>Harvest Window</p>
             </div>
           </li>
-        ))}
-      </ul>
+          {data.currentHerbs.map((herb) => (
+            <li class="inseason-card">
+              <div class="key-details">
+                <p>{herb.name}</p>
+                <p>{herb.harvestWindow}</p>
+              </div>
+              <div class="extra-details">
+                <p>{herb.botanicalName}</p>
+                <p>{herb.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     ))
   }
 </aside>
+
+<style>
+  @layer layout {
+    aside {
+      container: in-season / inline-size;
+      grid-row: 1 / span 2;
+      padding-inline: var(--space-12);
+      padding-block-start: var(--space-12);
+
+      & .title {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        & h2 {
+          flex-grow: 1;
+        }
+
+        & button {
+          padding-inline: var(--space-4);
+          padding-block: var(--space-2);
+        }
+      }
+
+      & .inseason-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+
+      & ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+
+        & li:first-of-type {
+          margin-block-start: var(--space-4);
+          margin-block-end: var(--space-4);
+        }
+
+        & .inseason-card {
+          padding: var(--space-8);
+        }
+
+        & li {
+          margin-block-end: var(--space-6);
+
+          & p {
+            padding-block: var(--space-1);
+          }
+
+          & .key-details {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          & .extra-details {
+            display: none;
+            transition: display 0.3s ease-in-out;
+
+            @container in-season (inline-size >= 22rem) {
+              display: block;
+            }
+          }
+        }
+      }
+
+      & ul[data-season] {
+        display: none;
+      }
+    }
+  }
+
+  @layer theme {
+    aside {
+      background: var(--secondary-color);
+      box-shadow: 2px 0 2px 0
+        color-mix(in srgb, var(--text-color) 30%, transparent);
+
+      & .title button {
+        background: var(--accent-color);
+        border: 1px outset var(--primary-color);
+        border-radius: var(--radius);
+      }
+
+      & ul {
+        & li:first-child {
+          font-weight: bold;
+        }
+
+        & .inseason-card {
+          background: color-mix(
+            in srgb,
+            var(--secondary-color) 25%,
+            var(--primary-color)
+          );
+          border-radius: var(--radius);
+        }
+
+        & .key-details p:first-of-type {
+          @container in-season (inline-size >= 22rem) {
+            font-weight: bold;
+          }
+        }
+
+        & .extra-details p:first-of-type {
+          font-style: italic;
+          font-size: var(--fsize-small);
+        }
+      }
+    }
+  }
+</style>
 
 <script>
   // text flip demo
