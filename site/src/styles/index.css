@@ -32,6 +32,7 @@
     --fsize-large: 1.2rem;
     --fsize-h2: 2.074rem;
     --fsize-h1: 2.488rem;
+    --fsize-h3: 1.728rem;
 
     /* Primitive color values */
     --text-color: #2d1b11;
@@ -99,7 +100,7 @@
     --season-width: 20rem;
     display: grid;
     grid-template-columns: var(--season-width) 1fr;
-    gap: var(--space-16);
+    gap: var(--space-12);
 
     &.season-expanded {
       --season-width: 26rem;
@@ -123,58 +124,21 @@
     display: revert;
   }
 
-  .batches {
-    padding-inline: var(--space-8);
-    padding-block-end: var(--space-16);
-    min-block-size: 35rem;
-
-    & [data-season] {
-      display: none;
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
-    }
-  }
-
-  body:has(input[value="spring"]:checked) .batches [data-season="spring"] {
+  /* toggle display of the active batch lists */
+  body:has(input[value="spring"]:checked) .batch-list [data-season="spring"] {
     display: grid;
   }
 
-  body:has(input[value="summer"]:checked) .batches [data-season="summer"] {
+  body:has(input[value="summer"]:checked) .batch-list [data-season="summer"] {
     display: grid;
   }
 
-  body:has(input[value="autumn"]:checked) .batches [data-season="autumn"] {
+  body:has(input[value="autumn"]:checked) .batch-list [data-season="autumn"] {
     display: grid;
   }
 
-  body:has(input[value="winter"]:checked) .batches [data-season="winter"] {
+  body:has(input[value="winter"]:checked) .batch-list [data-season="winter"] {
     display: grid;
-  }
-
-  .card {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    padding-block: var(--space-4);
-    padding-inline: var(--space-8);
-
-    & .card-name {
-      grid-row: 1;
-      grid-column: 1;
-      font-size: var(--fsize-large);
-    }
-
-    & .card-time {
-      grid-row: 2;
-      grid-column: 1;
-      font-size: var(--fsize-small);
-    }
-
-    & .card-arrow {
-      grid-row: 1 / span 2;
-      grid-column: 2;
-    }
   }
 }
 
@@ -210,23 +174,6 @@
     box-shadow: inset 0 2px 2px 0
       color-mix(in srgb, var(--text-color) 30%, transparent);
   }
-
-  .batch-detail {
-    background: var(--secondary-color);
-    border: 1px solid var(--text-color);
-    border-radius: var(--radius);
-  }
-
-  .card {
-    border: 2px solid var(--secondary-color);
-    border-radius: var(--radius);
-    box-shadow: 0 2px 4px color-mix(in srgb, var(--text-color) 15%, transparent);
-    background: color-mix(
-      in srgb,
-      var(--primary-color) 80%,
-      var(--secondary-color)
-    );
-  }
 }
 
 @layer motion {
@@ -235,7 +182,7 @@
     overflow: clip;
   }
 
-  .batches {
+  #batches {
     view-transition-name: batch-panel;
   }
 

@@ -14,12 +14,81 @@ const { seasonalData } = Astro.props;
       <div data-season={data.season}>
         {data.currentBatches.map((batch) => (
           <button class="card" data-batch={batch.id}>
-            <p class="card-name">{batch.name}</p>
-            <p class="card-time">{batch.daysRemaining} Days until ready</p>
-            <p class="card-arrow">{"❯"}</p>
+            <div>
+              <p class="card-name">{batch.name}</p>
+              <p class="card-time">
+                {batch.daysRemaining}{" "}
+                {batch.daysRemaining === 1
+                  ? "Day until ready"
+                  : "Days until ready"}
+              </p>
+            </div>
+            <div class="card-arrow">
+              <p>Batch details </p>
+              <p>{"❯"}</p>
+            </div>
           </button>
         ))}
       </div>
     ))
   }
 </div>
+
+<style>
+  @layer layout {
+    /* this is set as a grid in the index.css, based on which season is active */
+    [data-season] {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-12);
+      inline-size: 95%;
+    }
+
+    div[data-season] {
+      display: none;
+    }
+
+    .card {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 4rem;
+      grid-template-rows: 1fr;
+      align-items: center;
+      padding-block: var(--space-4);
+      padding-inline: var(--space-8);
+      min-block-size: 8rem;
+
+      & .card-name {
+        font-size: var(--fsize-large);
+      }
+
+      & .card-time {
+        font-size: var(--fsize-small);
+      }
+
+      & .card-arrow {
+        grid-column: 2;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .card:last-child {
+      grid-column: 2 / span 2;
+    }
+  }
+
+  @layer theme {
+    .card {
+      border: 2px solid var(--secondary-color);
+      border-radius: var(--radius);
+      box-shadow: 1px 2px 4px 1px
+        color-mix(in srgb, var(--text-color) 15%, transparent);
+      background: color-mix(
+        in srgb,
+        var(--primary-color) 80%,
+        var(--secondary-color)
+      );
+      text-align: left;
+    }
+  }
+</style>

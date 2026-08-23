@@ -26,6 +26,7 @@ const seasonalData: SeasonalDataItem[] = seasons.map((season) => {
 
   const currentIngredients = [
     ...currentHerbs.map((herb) => ({
+      id: herb.id,
       displayName: herb.pantryName,
       seasons: [herb.season],
       stockLevel: herb.stockLevel,
@@ -34,6 +35,7 @@ const seasonalData: SeasonalDataItem[] = seasons.map((season) => {
       batchNames: batchDetails(herb.id),
     })),
     ...staples.map((staple) => ({
+      id: staple.id,
       displayName: staple.name,
       seasons: seasons,
       stockLevel: staple.stockLevel,

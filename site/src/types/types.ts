@@ -6,6 +6,7 @@ export type Staple = CollectionEntry<"staples">["data"];
 export type Batch = CollectionEntry<"batches">["data"];
 
 export type SeasonalIngredient = {
+  id: string;
   displayName: string;
   seasons: string[];
   stockLevel: number;

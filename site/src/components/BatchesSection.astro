@@ -10,15 +10,26 @@ interface Props {
 const { seasonalData } = Astro.props;
 ---
 
-<section class="batches" id="batches">
+<section class="batches">
   <h2>Actively Cooking</h2>
-  <BatchList seasonalData={seasonalData} />
-  <BatchDetail seasonalData={seasonalData} />
+  <div id="batches">
+    <BatchList seasonalData={seasonalData} />
+    <BatchDetail seasonalData={seasonalData} />
+  </div>
 </section>
+
+<style>
+  @layer layout {
+    .batches {
+      padding-inline: var(--space-12);
+      padding-block-end: var(--space-20);
+    }
+  }
+</style>
 
 <script>
   const batchList = document.querySelector(".batch-list") as HTMLElement;
-  const batchesSection = document.querySelector(".batches") as HTMLElement;
+  const batchesSection = document.querySelector("#batches") as HTMLElement;
 
   function open(id: string) {
     withTransition(() => {
