@@ -11,7 +11,7 @@ const { seasonalData } = Astro.props;
 {
   seasonalData.map((data) => {
     return data.currentBatches.map((batch) => (
-      <div class="batch-list-detail" id={`batch-detail-${batch.id}`} hidden>
+      <div class="batch-list-detail" id={`batch-detail-${batch.id}`}>
         <button data-back={batch.id}>{"❮"} Back to batch list</button>
         <h3>{batch.name}</h3>
         <div class="info">
@@ -101,10 +101,6 @@ const { seasonalData } = Astro.props;
         grid-area: desc;
       }
     }
-
-    .batch-list-detail[hidden] {
-      display: none;
-    }
   }
 
   @layer theme {
@@ -129,7 +125,7 @@ const { seasonalData } = Astro.props;
         font-size: var(--fsize-h3);
         text-align: center;
         text-decoration: 4px dotted underline var(--accent-color);
-        text-underline-offset: var(--space-2);
+        text-underline-offset: var(--space-4);
       }
 
       & .info-header {

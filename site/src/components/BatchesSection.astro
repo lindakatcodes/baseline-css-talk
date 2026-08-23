@@ -12,7 +12,7 @@ const { seasonalData } = Astro.props;
 
 <section class="batches">
   <h2>Actively Cooking</h2>
-  <div id="batches">
+  <div id="batches" data-view="dashboard">
     <BatchList seasonalData={seasonalData} />
     <BatchDetail seasonalData={seasonalData} />
   </div>
@@ -23,36 +23,42 @@ const { seasonalData } = Astro.props;
     .batches {
       padding-inline: var(--space-12);
       padding-block-end: var(--space-20);
+      min-block-size: 35rem;
     }
   }
 </style>
 
 <script>
-  const batchList = document.querySelector(".batch-list") as HTMLElement;
+  const detailPanels = [...document.querySelectorAll(".batch-list-detail")];
   const batchesSection = document.querySelector("#batches") as HTMLElement;
 
   function open(id: string) {
-    withTransition(() => {
-      const detailPanel = document.getElementById(
-        `batch-detail-${id}`,
-      ) as HTMLElement;
-      batchList.hidden = true;
-      detailPanel.hidden = false;
-      document.documentElement.dataset.view = "detail";
+    detailPanels.forEach((panel) => {
+      const isActive = panel.id === `batch-detail-${id}`;
+      panel.classList.toggle("is-active", isActive);
+    });
+
+    document.documentElement.dataset.view = "detail";
+    batchesSection.dataset.view = "detail";
+
+    requestAnimationFrame(() => {
+      if (!document.startViewTransition) return;
+      document.startViewTransition(() => {});
     });
   }
 
-  function back(id: string) {
-    withTransition(() => {
-      document.getElementById(`batch-detail-${id}`)!.hidden = true;
-      batchList.hidden = false;
-      document.documentElement.dataset.view = "dashboard";
+  function back() {
+    detailPanels.forEach((panel) => {
+      panel.classList.toggle("is-active", false);
     });
-  }
 
-  function withTransition(swap: () => void) {
-    if (!document.startViewTransition) return swap();
-    document.startViewTransition(swap);
+    document.documentElement.dataset.view = "dashboard";
+    batchesSection.dataset.view = "dashboard";
+
+    requestAnimationFrame(() => {
+      if (!document.startViewTransition) return;
+      document.startViewTransition(() => {});
+    });
   }
 
   batchesSection.addEventListener("click", (event) => {
@@ -61,6 +67,6 @@ const { seasonalData } = Astro.props;
     const card = target.closest("[data-batch]") as HTMLElement | null;
     const backBtn = target.closest("[data-back]") as HTMLElement | null;
     if (card) open(card.dataset.batch || "0");
-    if (backBtn) back(backBtn.dataset.back || "0");
+    if (backBtn) back();
   });
 </script>

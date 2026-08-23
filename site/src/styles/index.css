@@ -140,6 +140,30 @@
   body:has(input[value="winter"]:checked) .batch-list [data-season="winter"] {
     display: grid;
   }
+
+  #batches[data-view="detail"] {
+    & .batch-list-detail.is-active {
+      display: grid;
+    }
+
+    & .batch-list-detail {
+      display: none;
+    }
+
+    & .batch-list {
+      display: none;
+    }
+  }
+
+  #batches[data-view="dashboard"] {
+    & .batch-list-detail {
+      display: none;
+    }
+
+    & .batch-list {
+      display: grid;
+    }
+  }
 }
 
 /* Theme is then our stylistic choices - what colors do we want things to be, how should they look? */
