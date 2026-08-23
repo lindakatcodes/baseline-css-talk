@@ -444,3 +444,21 @@ layout: end
 <!-- 
 qr code with a link to the slides/site/references, and how to connect w/ me. either need to build something out for this or make the qr code link to my site and have a url for the codebase (probably a link to the codebase from my portfolio too)
 -->
+
+<!-- 
+CSS is the art of crafting and guiding attention and intention. The attention aspect is what most people think of: creating our different font sizes, using accent colors on call-to-action buttons, and how we lay out the page to guide people through the order that we think makes sense for them. It pulls your attention, guides it, and shapes it.
+
+What I want to focus on today is more of the intention side. A lot of new features have become baseline, widely available, which means that they have been in all modern browsers for the past 18 months or a year and a half or so. Chances are good that most of your users will be able to support it.
+
+These newer features give us more ability to be intentional with what we do and to collaborate with our browsers. They let CSS say what we intend, say what we want to have it do, and how we want our HTML and our content to look, be, and act. It just does it for us. There is less need to rely on JavaScript to do a lot of these things that we've always had to rely on it for.
+
+My hope today is that I can introduce you to some of these things, show you a little bit of how they work, and start to spark some ideas for you on how you can design more intentionally. 
+
+Attention is applying our mind to something, drawing the focus to something. It's what we mean when we're paying attention to something. It is where we look, what catches our eye, what our brain starts to focus on.
+
+Intention is being able to design for a specific use. It's like the meaning that we put behind things, and it leads into the attention that we want to draw the things. These two working together is what makes CSS so magical.
+
+A lot of the beauty and magic of these properties is also how much it helps us to get out of our own ways and make it easier for us to maintain and create the thing we are trying to do. Our users of our products never really know or care what the codebase looks like or how the code is written that gets them to their final product.
+
+The more intention and clarity that we can put into the parts that they don't see, the easier it is for us to focus on the actual experience we want for them and design things that are more inclusive, more magical, and more meaningful. They go hand in hand. A lot of these help us to need fewer changes and need less complexity so that we can then spend more time focusing on the actual end result. 
+ -->
