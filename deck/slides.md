@@ -17,7 +17,7 @@ class: text-center
 
 # Baseline Magic: The Art of Intent-Driven CSS
 
-### Linda Thompson
+<h2 class="text-3xl">Linda Thompson</h2>
 
 Software engineer
 
@@ -41,9 +41,16 @@ Today I hope to help you do just that. Because in today's modern world...
 layout: statement
 ---
 
-# CSS is a system of intent.
+# CSS turns intention into attention.
 
 <Footer />
+
+<style>
+  #app .slidev-layout.statement h1 {
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+</style>
 
 <!-- 
 What do I want to convey for this slide? 
@@ -60,12 +67,10 @@ To showcase these, we're going to create a dashboard for a small apothecary shop
 ---
 layout: iframe
 url: http://localhost:4321
-zoom: 0.9
+zoom: 0.8
 ---
 
 <!-- 
-What do I want to convey for this slide? 
-- showoff the project early, lead into the next few pieces
 
 -->
 
@@ -73,22 +78,18 @@ What do I want to convey for this slide?
 
 ## Custom Properties
 
-Declare once, reuse everywhere.
+Reuse with intention, maintain with ease
 
 ```css
 :root {
-  /* Declare the variable */
   --spring-primary-color: #FFCAD4;
-  /* Then use it in other variables */
   --primary-color: var(--spring-primary-color);
 }
 
-/* Or directly within components */
 main {
   background: var(--primary-color);
 }
 
-/* Can also give the browser more info */
 @property --primary-color {
   syntax: "<color>";
   inherits: true;
@@ -119,118 +120,16 @@ With our tokens in place, next we'll focus on our layout and how it can know the
 
 ---
 
-## Container Queries & Logical Properties
-
-Design for flow, not dimensions.
-
-```css
-aside {
-  /* Shortcut - name and then type */
-  container: in-season / inline-size;
-} 
-
-/* Looks just like a media query, but based on the container! */
-@container in-season (inline-size >= 26cqi) {
-  .extra-details { 
-    display: block;
-  }
-}
-
-li {
-  /* Start or end for a single side, neither for both sides */
-  padding-inline-end: var(--space-4);
-  padding-block: var(--space-4);
-}
-```
-
-
-<Footer />
-
-<!-- 
-What do I want to convey for this slide? 
-- defining the container defines the context, tells the browser we'll need to query this
-- containers can't query themselves, so wrap around what you want to be adjusted
-- simplifies your queries, since you can now adjust based on the container's size instead of the viewports. so some styles can get reused on mobile and desktop without having to write a ton of queries; also lets your queries be simpler, since you're only worrying about the space your container takes up and not what size the window is
-- containers can't be sized from their contents - making it a container loses it's ability to tell the inner contents to size based off it, so you need to be more explicit for those inner details
-- logical properties relate to the flow of the content, not physical dimensions
-- block flow is the direction of content blocks. inline flow is how text flows in the content
-- provides support for internationalization and real content adjustments
-
-widely avail, size queries 92%
--->
-
----
-layout: iframe
-url: http://localhost:4321
-zoom: 0.9
----
-
-<!-- actually record this and make it a demo; not sure how flipping back and forth between the code and the site will be since it'll cause a reload, unless you want to add a toggle button to change it
-show the sidebar toggle and rtl transformation -->
-
----
-
-## The Has Selector
-
-Style based on conditions and relationships.
-
-```css
-body {
-  /* We declared our property type, so transitions just work */
-  transition:
-    --primary-color 0.3s ease-in-out,
-    --secondary-color 0.3s ease-in-out,
-}
-
-/* The body changes based on the selected radio input */
-body:has(input[value="summer"]:checked) {
-  --primary-color: var(--summer-primary-color);
-  --secondary-color: var(--summer-secondary-color);
-}
-```
-
-```html
-<div>
-  <input type="radio" id="summer" name="season" value="summer" />
-  <label for="summer">Summer</label>
-</div>
-```
-
-<Footer />
-
-<!-- 
-What do I want to convey for this slide? 
-- a family selector; takes the first selector, and if that element has whatever's in the () it styles the first selector
-- can look for any descendant, or use combinators to find direct children or siblings
-- can also combine with out pseudo classes like not, so you can use negative relations too
-- needs a solid base for the relationship though; can't use pseudo elements (like before or after) because they're often only conditionally registered. it needs to have a reliable base to start from
-
-widely avail, 93%
--->
-
----
-layout: iframe
-url: http://localhost:4321
-zoom: 0.9
----
-
-<!-- toggle the seasons, make sure to give each change a second or two in order to breathe and really let it sink in -->
-
----
-
 ## Cascade Layers
 
-Order is everything. We control that now.
+Control the cascade, shape the story
 
 ```css
-/* Set the ordering first to guarantee our intention. */
 @layer reset, base, layout, theme;
-/* Can import other stylesheets and assign to a layer. */
 @import "reset.css" layer(reset);
-/* Or describe the layers in the file itself. */
 @layer base {
   :root {
-    /* ...our custom properties, fonts, etc. */
+    /* ... */
   }
 }
 @layer layout {
@@ -241,7 +140,7 @@ Order is everything. We control that now.
   }
 }
 @layer theme {
-  /* ...colors, borders, style-related values */
+  /* ... */
 }
 ```
 
@@ -275,85 +174,48 @@ So now we have the majority of our shop designed and laid out! Now let's add a l
 -->
 
 ---
-layout: two-cols-header
----
 
-## View Transitions
+## Container Queries & Logical Properties
 
-Somehow this conveys intent too.
-
-::left::
-
-```js
-function back(id: string) {
-  withTransition(() => {
-    const detail = document.getElementById(`batch-detail-${id}`);
-    detail.hidden = true;
-    batchList.hidden = false;
-    document.documentElement.dataset.view = "dashboard";
-  });
-}
-
-function withTransition(swap: () => void) {
-  if (!document.startViewTransition) return swap();
-  document.startViewTransition(swap);
-}
-
-batchesSection.addEventListener("click", (event) => {
-  const target = event.target as HTMLElement;
-  const backBtn = target.closest("[data-back]");
-  if (backBtn) back(backBtn.dataset.back || "0");
-});
-```
-
-::right::
+Layout shaped by context and flow
 
 ```css
-::view-transition-group(batch-panel) {
-  animation: none;
-  overflow: clip;
+aside {
+  container-name: in-season;
+  container-type: inline-size;
+} 
+
+@container in-season (inline-size >= 26cqi) {
+  .extra-details { 
+    display: block;
+  }
 }
 
-.batches {
-  view-transition-name: batch-panel;
-}
-
-html[data-view="dashboard"] {
-  &::view-transition-new(batch-panel) {
-    animation: 350ms ease-out both slide-from-left;
-  }
-  &::view-transition-old(batch-panel) {
-    animation: 350ms ease-in both slide-to-right;
-  }
+li {
+  padding-inline-end: var(--space-4);
+  padding-block: var(--space-4);
 }
 ```
 
 <Footer />
 
-<style>
-.two-cols-header {
-  column-gap: 10px;
-  /* grid-template-columns: 50% 50%; */
-}
-
-</style>
-
 <!-- 
 What do I want to convey for this slide? 
-- same-document is what's baseline available, uses js to swap
-- cross-document is coming soon, supports multi page and uses css
-- document.startViewTransition calls the function that should start the swap
-- works by the browser taking snapshots of the old/current page and the new/incoming page, then by default doing a cross fade, turning the old opacity down and the new one up
-- can change this effect by using css animations to create your own
-- 
+- defining the container defines the context, tells the browser we'll need to query this
+- containers can't query themselves, so wrap around what you want to be adjusted
+- simplifies your queries, since you can now adjust based on the container's size instead of the viewports. so some styles can get reused on mobile and desktop without having to write a ton of queries; also lets your queries be simpler, since you're only worrying about the space your container takes up and not what size the window is
+- containers can't be sized from their contents - making it a container loses it's ability to tell the inner contents to size based off it, so you need to be more explicit for those inner details
+- logical properties relate to the flow of the content, not physical dimensions
+- block flow is the direction of content blocks. inline flow is how text flows in the content
+- provides support for internationalization and real content adjustments
 
-newly avail, 88% single-page
+widely avail, size queries 92%
 -->
 
 ---
 layout: iframe
-url: http://localhost:4321#batches
-zoom: 0.9
+url: http://localhost:4321
+zoom: 0.8
 ---
 
 <!--  -->
@@ -361,9 +223,55 @@ zoom: 0.9
 
 ---
 
+## The Has Selector
+
+State and meaning through connection
+
+```css
+body {
+  transition:
+    --primary-color 0.3s ease-in-out,
+    --secondary-color 0.3s ease-in-out,
+}
+
+body:has(input[value="summer"]:checked) {
+  --primary-color: var(--summer-primary-color);
+  --secondary-color: var(--summer-secondary-color);
+}
+```
+
+```html
+<div>
+  <input type="radio" id="summer" name="season" value="summer" />
+  <label for="summer">Summer</label>
+</div>
+```
+
+<Footer />
+
+<!-- 
+What do I want to convey for this slide? 
+- a family selector; takes the first selector, and if that element has whatever's in the () it styles the first selector
+- can look for any descendant, or use combinators to find direct children or siblings
+- can also combine with out pseudo classes like not, so you can use negative relations too
+- needs a solid base for the relationship though; can't use pseudo elements (like before or after) because they're often only conditionally registered. it needs to have a reliable base to start from
+
+widely avail, 93%
+-->
+
+---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.8
+---
+
+<!--  -->
+
+---
+
 ## Popovers & Anchor Positioning
 
-Tether elements to each other, and let their relationship guide their positioning.
+Tell the story where it belongs
 
 ```html
 <button class="batch-pill" popovertarget=`batch-details-${data.season}-${index}`>
@@ -413,7 +321,87 @@ newly avail, 82%
 ---
 layout: iframe
 url: http://localhost:4321
-zoom: 0.9
+zoom: 0.8
+---
+
+<!--  -->
+
+---
+
+## View Transitions
+
+Smooth changes, grounded context
+
+<div class="grid grid-cols-[1fr_0.75fr] grid-rows-1 gap-6">
+
+```js
+function back(id: string) {
+  withTransition(() => {
+    const detail = document.getElementById(`batch-detail-${id}`);
+    detail.hidden = true;
+    batchList.hidden = false;
+    document.documentElement.dataset.view = "dashboard";
+  });
+}
+
+function withTransition(swap: () => void) {
+  if (!document.startViewTransition) return swap();
+  document.startViewTransition(swap);
+}
+
+batchesSection.addEventListener("click", (event) => {
+  const target = event.target as HTMLElement;
+  const backBtn = target.closest("[data-back]");
+  if (backBtn) back(backBtn.dataset.back || "0");
+});
+```
+
+```css
+::view-transition-group(batch-panel) {
+  animation: none;
+  overflow: clip;
+}
+
+.batches {
+  view-transition-name: batch-panel;
+}
+
+html[data-view="dashboard"] {
+  &::view-transition-new(batch-panel) {
+    animation: 350ms ease-out both slide-from-left;
+  }
+  &::view-transition-old(batch-panel) {
+    animation: 350ms ease-in both slide-to-right;
+  }
+}
+```
+
+</div>
+<Footer />
+
+<style>
+.slidev-layout pre {
+  block-size: 100%;
+}
+</style>
+
+<!-- 
+What do I want to convey for this slide? 
+- same-document is what's baseline available, uses js to swap
+- cross-document is coming soon, supports multi page and uses css
+- document.startViewTransition calls the function that should start the swap
+- works by the browser taking snapshots of the old/current page and the new/incoming page, then by default doing a cross fade, turning the old opacity down and the new one up
+- can change this effect by using css animations to create your own
+- 
+
+newly avail, 88% single-page
+-->
+
+
+---
+layout: iframe
+url: http://localhost:4321
+zoom: 0.8
 ---
 
 <!-- 
@@ -425,9 +413,18 @@ What do I want to convey for this slide?
 layout: statement
 ---
 
-# Stop fighting the browser. Collaborate with it.
+# Modern CSS is baseline magical. 
+
+## Craft intention, guide attention, ship joy.
 
 <Footer />
+
+<style>
+  #app .slidev-layout.statement h1 {
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+</style>
 
 <!-- 
 What do I want to convey for this slide? 
