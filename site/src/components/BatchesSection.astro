@@ -23,7 +23,7 @@ const { seasonalData } = Astro.props;
     .batches {
       padding-inline: var(--space-12);
       padding-block-end: var(--space-20);
-      min-block-size: 35rem;
+      min-block-size: 60rem;
     }
   }
 </style>
@@ -32,32 +32,42 @@ const { seasonalData } = Astro.props;
   const detailPanels = [...document.querySelectorAll(".batch-list-detail")];
   const batchesSection = document.querySelector("#batches") as HTMLElement;
 
-  function open(id: string) {
-    detailPanels.forEach((panel) => {
-      const isActive = panel.id === `batch-detail-${id}`;
-      panel.classList.toggle("is-active", isActive);
-    });
+  function openCard(id: string) {
+    const activePanel = detailPanels.find(
+      (panel) => panel.id === `batch-detail-${id}`,
+    );
+    activePanel!.classList.toggle("is-active", true);
 
     document.documentElement.dataset.view = "detail";
     batchesSection.dataset.view = "detail";
+  }
 
-    requestAnimationFrame(() => {
-      if (!document.startViewTransition) return;
-      document.startViewTransition(() => {});
+  function open(id: string) {
+    if (!document.startViewTransition) {
+      openCard(id);
+      return;
+    }
+    document.startViewTransition(() => {
+      openCard(id);
     });
   }
 
-  function back() {
+  function backToList() {
     detailPanels.forEach((panel) => {
       panel.classList.toggle("is-active", false);
     });
 
     document.documentElement.dataset.view = "dashboard";
     batchesSection.dataset.view = "dashboard";
+  }
 
-    requestAnimationFrame(() => {
-      if (!document.startViewTransition) return;
-      document.startViewTransition(() => {});
+  function back() {
+    if (!document.startViewTransition) {
+      backToList();
+      return;
+    }
+    document.startViewTransition(() => {
+      backToList();
     });
   }
 

@@ -212,44 +212,44 @@
 
   @keyframes slide-from-right {
     from {
-      translate: 30% 0;
+      translate: 20% 0;
       opacity: 0;
     }
   }
   @keyframes slide-to-left {
     to {
-      translate: -30% 0;
+      translate: -20% 0;
       opacity: 0;
     }
   }
   @keyframes slide-from-left {
     from {
-      translate: -30% 0;
+      translate: -20% 0;
       opacity: 0;
     }
   }
   @keyframes slide-to-right {
     to {
-      translate: 30% 0;
+      translate: 20% 0;
       opacity: 0;
     }
   }
 
   html[data-view="detail"] {
     &::view-transition-new(batch-panel) {
-      animation: 350ms ease-out both slide-from-right;
+      animation: 375ms ease-in both slide-from-right;
     }
     &::view-transition-old(batch-panel) {
-      animation: 350ms ease-in both slide-to-left;
+      animation: 375ms ease-out both slide-to-left;
     }
   }
 
   html[data-view="dashboard"] {
     &::view-transition-new(batch-panel) {
-      animation: 350ms ease-out both slide-from-left;
+      animation: 375ms ease-in both slide-from-left;
     }
     &::view-transition-old(batch-panel) {
-      animation: 350ms ease-in both slide-to-right;
+      animation: 375ms ease-out both slide-to-right;
     }
   }
 
