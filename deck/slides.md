@@ -38,7 +38,8 @@ newly available: interoperable / all major browsers support it
 layout: statement
 ---
 
-# CSS turns intention into attention.
+# Craft with intention.
+# Guide the attention.
 
 <Footer />
 
@@ -77,7 +78,9 @@ Reuse with intention, maintain with ease
 
 ```css
 :root {
-  --spring-primary-color: #FFCAD4;
+  --spring-primary-color: #ffcad4;
+  --summer-primary-color: #ccd8ab;
+
   --primary-color: var(--spring-primary-color);
 }
 
@@ -114,20 +117,19 @@ Control the cascade, shape the story
 
 @import "reset.css" layer(reset);
 
-@layer base {
-  :root {
-    /* ... */
-  }
-}
 @layer layout {
-  header {
-    display: flex;
-    align-items: center;
+  main {
+    display: grid;
+    grid-template-columns: var(--season-width) 1fr;
     /* ... */
   }
 }
+
 @layer theme {
-  /* ... */
+  main {
+    background: var(--primary-color);
+    /* ... */
+  }
 }
 ```
 
@@ -153,17 +155,21 @@ Layout shaped by context and flow
 aside {
   container-name: in-season;
   container-type: inline-size;
+  /* or the shorthand */
+  /* container: in-season / inline-size; */
+
+  padding-inline: var(--space-12);
+  padding-block-start: var(--space-12);
 } 
 
-@container in-season (inline-size >= 26cqi) {
+.extra-details {
+  display: none;
+}
+
+@container in-season (inline-size >= 22rem) {
   .extra-details { 
     display: block;
   }
-}
-
-li {
-  padding-inline-end: var(--space-4);
-  padding-block: var(--space-4);
 }
 ```
 
@@ -200,7 +206,7 @@ DON'T FORGET TO SWITCH IT BACK OFF
 
 <p class="text-sm italic fixed top-[2rem] right-[3.5rem]">Baseline: 94%</p>
 
-State and meaning through connection
+Explore connections to inspire style
 
 ```css
 body {
@@ -255,20 +261,20 @@ Tell the story where it belongs
 </button>
 <div
   id=`batch-details-${data.season}-${index}`
-  class="batch-detail"
+  class="bp-popover"
   popover
 >
-  {ingredient.batchNames.map((name) => (
-    <p>❧ {name}</p>
-  ))}
+<p class="popover-title">
+  Batches using {ingredient.displayName}:
+</p>
+  <!-- ... -->
 </div>
 ```
 
 ```css
-.batch-detail {
+.bp-popover {
   position-area: inline-start;
   margin-inline-end: 0.5rem;
-  padding: var(--space-4);
 }
 ```
 
@@ -308,46 +314,42 @@ careful NOT to click esc, might close something you don't want to lol
 
 Smooth changes, grounded context
 
-<div class="grid grid-cols-[1fr_0.75fr] grid-rows-1 gap-6">
+<div class="grid grid-cols-2 grid-rows-1 gap-6">
 
 ```js
-function back(id: string) {
-  withTransition(() => {
-    const detail = document.getElementById(`batch-detail-${id}`);
-    detail.hidden = true;
-    batchList.hidden = false;
-    document.documentElement.dataset.view = "dashboard";
+function open(id: string) {
+  if (!document.startViewTransition) {
+    openCard(id);
+    return;
+  }
+  document.startViewTransition(() => {
+    openCard(id);
   });
 }
 
-function withTransition(swap: () => void) {
-  if (!document.startViewTransition) return swap();
-  document.startViewTransition(swap);
-}
-
 batchesSection.addEventListener("click", (event) => {
-  const target = event.target as HTMLElement;
-  const backBtn = target.closest("[data-back]");
-  if (backBtn) back(backBtn.dataset.back || "0");
+  const target = event.target;
+  const card = target.closest("[data-batch]");
+  if (card) open(card.dataset.batch);
 });
 ```
 
 ```css
+#batches {
+  view-transition-name: batch-panel;
+}
+
 ::view-transition-group(batch-panel) {
   animation: none;
   overflow: clip;
 }
 
-.batches {
-  view-transition-name: batch-panel;
-}
-
-html[data-view="dashboard"] {
+html[data-view="detail"] {
   &::view-transition-new(batch-panel) {
-    animation: 350ms ease-out both slide-from-left;
+    animation: 375ms ease-in both slide-from-right;
   }
   &::view-transition-old(batch-panel) {
-    animation: 350ms ease-in both slide-to-right;
+    animation: 375ms ease-out both slide-to-left;
   }
 }
 ```
@@ -364,7 +366,7 @@ html[data-view="dashboard"] {
 <!--  
 - same-document is what's baseline available, uses js to swap
 - cross-document is coming soon, supports multi page and uses css
-- document.startViewTransition calls the function that should start the swap
+- document.startViewTransition calls the function that should start the swap - important that the DOM changes  happen in here! if they happen before then the browser swaps new -> new and it doesn't look right
 - works by the browser taking snapshots of the old/current page and the new/incoming page, then by default doing a cross fade, turning the old opacity down and the new one up
 - can change this effect by using css animations to create your own
 -->
@@ -386,9 +388,8 @@ also remind what all we've covered - all these cool things that by default brows
 layout: statement
 ---
 
-# Modern CSS is baseline magical. 
-
-## Craft intention, guide attention, ship joy.
+# Craft with intention.
+# Unlock attention.
 
 <Footer />
 
@@ -408,6 +409,24 @@ layout: end
 ---
 
 # Connect with Me
+
+Slides, Demo, and where to find me online:
+
+<img src="" alt="" />
+
+Thanks for taking this <span class="magic">magical</span> journey with me!
+
+<style>
+  .magic {
+    font-style: italic;
+    color: #8BE9FD;
+  }
+
+  .magic::before,
+  .magic::after {
+    content: "✨";
+  }
+</style>
 
 <!-- 
 put the direct link to the codebase (update the readme with links for the deployed versions of the slides and site)

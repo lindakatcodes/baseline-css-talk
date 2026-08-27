@@ -1,15 +1,16 @@
 <template>
   <div>
     <p>Linda Thompson</p>
-    <p>@lindakatcodes</p>
-    <p>@lindakat.com</p>
+    <p>TW: @lindakatcodes</p>
+    <p>BS: @lindakat.com</p>
+    <p>LI: in/lindakatcodes</p>
   </div>
 </template>
 
 <style scoped>
 div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   inline-size: calc(100% / var(--slidev-slide-zoom-scale));
   position: absolute;
