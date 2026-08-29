@@ -25,6 +25,12 @@ const { seasonalData } = Astro.props;
       padding-block-end: var(--space-20);
       min-block-size: 60rem;
     }
+
+    @media (width <= 650px) {
+      .batches {
+        padding-inline: var(--space-6);
+      }
+    }
   }
 </style>
 

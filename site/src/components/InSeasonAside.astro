@@ -110,6 +110,15 @@ const { seasonalData } = Astro.props;
         display: none;
       }
     }
+
+    @media (width <= 769px) {
+      aside {
+        & button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
   }
 
   @layer theme {
@@ -159,4 +168,22 @@ const { seasonalData } = Astro.props;
   // setTimeout(() => {
   //   seasonalContainer.dir = "rtl";
   // }, 4000);
+
+  const main = document.querySelector("main");
+  const seasonToggle = document.querySelector("#season-toggle");
+
+  seasonToggle?.addEventListener("click", () => {
+    const expanded = main?.classList.toggle("season-expanded");
+    seasonToggle.setAttribute("aria-pressed", String(expanded));
+  });
+
+  // mobile disable button
+  const mobileQuery = matchMedia("(width <= 769px)");
+
+  const syncToggleAvailability = (e: MediaQueryList | MediaQueryListEvent) => {
+    seasonToggle?.toggleAttribute("disabled", e.matches);
+  };
+
+  syncToggleAvailability(mobileQuery);
+  mobileQuery.addEventListener("change", syncToggleAvailability);
 </script>

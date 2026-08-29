@@ -58,6 +58,34 @@
         }
       }
     }
+
+    @media (width <= 650px) {
+      header {
+        flex-direction: column;
+
+        & h1 {
+          text-align: center;
+          margin-block-end: var(--space-6);
+        }
+
+        & .season-options {
+          margin-block-end: var(--space-6);
+        }
+      }
+    }
+
+    @media (width <= 376px) {
+      header {
+        & .season-options {
+          padding-inline: 0;
+          gap: 0;
+
+          & div {
+            padding-inline: 0;
+          }
+        }
+      }
+    }
   }
 
   @layer theme {
@@ -82,13 +110,3 @@
     }
   }
 </style>
-
-<script>
-  const main = document.querySelector("main");
-  const seasonToggle = document.querySelector("#season-toggle");
-
-  seasonToggle?.addEventListener("click", () => {
-    const expanded = main?.classList.toggle("season-expanded");
-    seasonToggle.setAttribute("aria-pressed", String(expanded));
-  });
-</script>

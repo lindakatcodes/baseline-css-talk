@@ -75,6 +75,22 @@ const { seasonalData } = Astro.props;
     .card:last-child {
       grid-column: 2 / span 2;
     }
+
+    @media (width <= 769px) {
+      [data-season] {
+        inline-size: 100%;
+      }
+    }
+
+    @media (width <= 650px) {
+      [data-season] {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card:last-child {
+        grid-column: 1 / span 2;
+      }
+    }
   }
 
   @layer theme {

@@ -101,6 +101,32 @@ const { seasonalData } = Astro.props;
         grid-area: desc;
       }
     }
+
+    @media (width <= 650px) {
+      .batch-list-detail {
+        padding-inline: var(--space-6);
+        inline-size: 100%;
+        grid-template-areas:
+          "button button ."
+          "title title title"
+          "info info info"
+          "ingred ingred ingred"
+          "desc desc desc";
+
+        & .info {
+          text-align: center;
+          align-items: center;
+        }
+
+        & .ingredients {
+          & ul {
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+          }
+        }
+      }
+    }
   }
 
   @layer theme {

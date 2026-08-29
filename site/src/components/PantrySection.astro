@@ -133,6 +133,39 @@ const { seasonalData } = Astro.props;
         }
       }
     }
+
+    @media (width <= 769px) {
+      .pantry {
+        & table {
+          inline-size: 100%;
+        }
+      }
+    }
+
+    @media (width <= 650px) {
+      .pantry {
+        padding-inline: var(--space-6);
+
+        & table {
+          & th {
+            font-size: var(--fsize-small);
+          }
+        }
+
+        & .batch-pill {
+          inline-size: 4.5rem;
+        }
+      }
+    }
+
+    @media (width <= 376px) {
+      .pantry {
+        & table {
+        & tr > :nth-child(1) {
+          inline-size: 20%;
+        }
+      }
+    }
   }
 
   @layer theme {
