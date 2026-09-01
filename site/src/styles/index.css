@@ -36,18 +36,18 @@
 
     /* Primitive color values */
     --text-color: #2d1b11;
-    --spring-primary-color: #ffcad4;
-    --spring-secondary-color: #f093a1;
-    --spring-accent-color: #bda8c7;
+    --spring-primary-color: #f6c1cb;
+    --spring-secondary-color: #f18e9d;
+    --spring-accent-color: #bda4e0;
     --summer-primary-color: #ccd8ab;
-    --summer-secondary-color: #9ab257;
-    --summer-accent-color: #f37c96;
-    --autumn-primary-color: #ffd770;
-    --autumn-secondary-color: #f87112;
-    --autumn-accent-color: #82944c;
-    --winter-primary-color: #cae9ff;
-    --winter-secondary-color: #5fa8d3;
-    --winter-accent-color: #85c1b5;
+    --summer-secondary-color: #9cb459;
+    --summer-accent-color: #f78ba5;
+    --autumn-primary-color: #f4c6ad;
+    --autumn-secondary-color: #f29369;
+    --autumn-accent-color: #a6b86f;
+    --winter-primary-color: #add8f6;
+    --winter-secondary-color: #52b3ea;
+    --winter-accent-color: #6dc2c0;
 
     /* spacing - space-1 is the base value, so every step higher up is space-1 * the step number */
     --space-1: 0.125rem; /* 2px */
