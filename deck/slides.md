@@ -447,11 +447,16 @@ layout: end
 
 Slides, Demo, and where to find me online:
 
-<img src="" alt="" />
+<figure class="w-75 m-auto">
+  <img src="./qr-code.png" alt="qr code that goes to lindakat.com/magic" />
+  <figcaption><a href="https://lindakat.com/magic">https://lindakat.com/magic</a></figcaption>
+</figure>
 
 Thanks for taking this <span class="magic">magical</span> journey with me!
 
 <style>
+
+
   .magic {
     font-style: italic;
     color: #8BE9FD;
