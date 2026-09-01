@@ -447,7 +447,7 @@ layout: end
 
 Slides, Demo, and where to find me online:
 
-<figure class="w-75 m-auto">
+<figure class="w-75 m-auto mb-1">
   <img src="./qr-code.png" alt="qr code that goes to lindakat.com/magic" />
   <figcaption><a href="https://lindakat.com/magic">https://lindakat.com/magic</a></figcaption>
 </figure>
