@@ -6,19 +6,19 @@
 @property --primary-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #ffcad4;
+  initial-value: #ccd8ab;
 }
 
 @property --secondary-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #f093a1;
+  initial-value: #9cb459;
 }
 
 @property --accent-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: #bda8c7;
+  initial-value: #f78ba5;
 }
 
 /* Base is our defaults - the tokens we have available and the basic typography the whole site should use */
