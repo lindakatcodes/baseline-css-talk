@@ -69,7 +69,8 @@ layout: statement
 
 ---
 layout: iframe
-url: http://localhost:4321
+# url: http://localhost:4321
+url: https://sageandsundry.netlify.app/
 zoom: 0.8
 ---
 
@@ -205,7 +206,8 @@ container size queries
 
 ---
 layout: iframe
-url: http://localhost:4321
+# url: http://localhost:4321
+url: https://sageandsundry.netlify.app/
 zoom: 0.8
 ---
 
@@ -261,7 +263,8 @@ body:has(input[value="summer"]:checked) {
 
 ---
 layout: iframe
-url: http://localhost:4321
+# url: http://localhost:4321
+url: https://sageandsundry.netlify.app/
 zoom: 0.8
 ---
 
@@ -330,7 +333,8 @@ Anchor positioning
 
 ---
 layout: iframe
-url: http://localhost:4321
+# url: http://localhost:4321
+url: https://sageandsundry.netlify.app/
 zoom: 0.8
 ---
 
@@ -414,7 +418,8 @@ html[data-view="detail"] {
 
 ---
 layout: iframe
-url: http://localhost:4321
+# url: http://localhost:4321
+url: https://sageandsundry.netlify.app/
 zoom: 0.8
 ---
 
