@@ -12,6 +12,6 @@ Covering some baseline widely and newly available properties, we discovered how 
 
 ## Tech
 
-The slides are built with [sli.dev](sli.dev)
+The slides are built with [sli.dev](https://sli.dev)
 
-The demo site is built with [Astro](astro.build)
+The demo site is built with [Astro](https://astro.build)
