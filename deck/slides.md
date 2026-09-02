@@ -33,14 +33,14 @@ Photo by <a href="https://unsplash.com/@anitaaustvika?utm_source=unsplash&utm_me
 </p>
 
 <!--
+24
+
 *Breathe*
 
 Quick intro
 
-Baseline widely available: 30 months / 2.5 years
-newly available: interoperable / all major browsers support it
-
-24
+- widely available: 30 months / 2.5 years
+- newly available: all major browsers support it
 -->
 
 ---
@@ -48,7 +48,7 @@ layout: statement
 ---
 
 # Craft with intention.
-# Guide the attention.
+# Unlock attention.
 
 <Footer />
 
@@ -60,13 +60,11 @@ layout: statement
 </style>
 
 <!--
-Attention is applying our mind to something, drawing the focus to something. 
+23
 
-Intention is being able to design for a specific use.
-
-The more intention and clarity that we can put into the parts that users don't see, the easier it is for us to focus on the actual experience we want for them and to design things that are more inclusive, more magical, and more meaningful.
-
-22
+- Attention is applying our mind to something, drawing the focus to something. 
+- Intention is being able to design for a specific use.
+- The more intention and clarity that we can put into the parts that users don't see, the easier it is for us to focus on the actual experience we want for them and to design things that are more inclusive, more magical, and more meaningful.
 -->
 
 ---
@@ -76,11 +74,11 @@ zoom: 0.8
 ---
 
 <!--
-To showcase these, we're going to create a dashboard for a small apothecary shop called Sage & Sundry. Let's go one ingredient at a time.
+22
 
-21
+- To showcase these, we're going to create a dashboard for a small apothecary shop called Sage & Sundry. Let's go one ingredient at a time.
+- build the site more intentionally and collaborate with the browser to see just how much it can do now
 -->
-
 ---
 
 ## Custom Properties
@@ -111,12 +109,11 @@ main {
 <Footer />
 
 <!--
-- easier to maintain, write once reuse everywhere
-- can describe the type of variable it is so the browser can use it how you'd expect (like transitions and the types of values it should expect)
-- can use as values for functions and other properties, just not media queries
-- starts with two dashes, called with var()
+21
 
-19
+- starts with two dashes, called with var()
+- easier to maintain, write once reuse everywhere
+- can describe the type of variable so the browser can use it how you'd expect (like transitions and the types of values it should expect)
 -->
 
 ---
@@ -151,13 +148,13 @@ Control the cascade, shape the story
 <Footer />
 
 <!-- 
-- order is everything; often best practice to declare the order by name first, then write the actual layers later so you don't have to remember the order
-- anything not in a layer gets highest priority, it's the top level
+18
+
+- cascade is layering - base layer first, then user styles, the authored styles, what we write
+- order is everything; best practice to declare the order by name first, then write the actual layers later
 - can reuse layers across components, the different values get appended to the existing layer
 - can import a stylesheet and assign it to a layer; huge help for component libraries and being able to easily overwrite parts of them
-- At a high view, the cascade is the idea of styles starting from a point and then layering one on top of the other to replace each other and build out how our sites look. Browser defaults get applied first, then a browser user's individual settings if they have some, then our authored styles. 
-
-17
+- anything not in a layer gets highest priority, it's the top level
 -->
 
 ---
@@ -193,16 +190,17 @@ aside {
 <Footer />
 
 <!--
-- logical properties relate to the flow of the content, not physical dimensions
-- block flow is the direction of content blocks. inline flow is how text flows in the content
+15
+
+Logical properties
+- inline flow is how text flows in the content
+- block flow is the direction of content blocks
 - provides support for internationalization and real content adjustments
 
-- size queries
-- containers can't query themselves, so wrap around what you want to be adjusted
-- containers can't be sized from their contents - making it a container loses it's ability to tell the inner contents to size based off it, so you need to be more explicit for those inner details
-- simplifies your queries, since you can now adjust based on the container's size instead of the viewports. so some styles can get reused on mobile and desktop without having to write a ton of queries; also lets your queries be simpler, since you're only worrying about the space your container takes up and not what size the window is
-
-15
+container size queries
+- type is required, name is optional (without names goes up to the stack)
+- containers wrap around what you want to be adjusted
+- lets us query by container size and content flow instead of window size; featured article example; simplifies amount of styles we need
 -->
 
 ---
@@ -212,12 +210,13 @@ zoom: 0.8
 ---
 
 <!-- 
+13.5
+
 in season sidebar and text toggle
 switch to vscode to change the toggle 
 site\src\components\InSeasonAside.astro
-DON'T FORGET TO SWITCH IT BACK OFF
 
-13.5
+DON'T FORGET TO SWITCH IT BACK OFF
 -->
 
 
@@ -252,12 +251,12 @@ body:has(input[value="summer"]:checked) {
 <Footer />
 
 <!-- 
+11.5
+
 - a family selector; takes the first selector, and if that element has whatever's in the () it styles the first selector
 - can look for any descendant, or use combinators to find direct children or siblings
 - can also combine with pseudo classes like not, so you can use negative relations too
 - needs a solid base for the relationship though; can't use pseudo elements (like before or after) because they're often only conditionally registered. it needs to have a reliable base to start from
-
-11.5
 -->
 
 ---
@@ -267,9 +266,9 @@ zoom: 0.8
 ---
 
 <!-- 
-season color palette swaps
+10.5
 
-10
+season color palette swaps
 -->
 
 ---
@@ -306,20 +305,27 @@ Tell the story where it belongs
 <Footer />
 
 <!-- 
-- popovers give you a way to display an element over the rest of your page content
-- at it's simplest, you give an element the popover attribute and an id. the browser will auto-hide it
-- then you pick a button/control to activate it, and give that the popovertarget attribute set to the popover's id. by default it works as a toggle, showing and hiding on each click. 
-- also by default you get some nice state - you can click outside it to light dismiss it, or press esc to exit. also only one popover is visible at a time, so clicking a button for another will auto-dismiss the previous one.
-- it also handles keyboard focus and assistive technology details for you
+7.5
 
-- the other thing is it creates an implicit anchor reference between our popover content and it's control - this lets us use anchor positioning to decide where we want our popover content to show up
-- anchor positioning lets us position an item relative to its invoker, in this case our popover relative to the button that toggles it
+Popover
+- great for things like tooltips, toasts, etc
+- display an element over the rest of your page content
+- at it's simplest, you give an element the popover attribute and an id
+- then pick a button/control to activate it, and give that the popovertarget attribute set to the popover's id.
+- by default you get some nice state 
+  - click outside to light dismiss 
+  - press esc to exit. 
+  - only one popover is visible at a time
+  - works as a toggle, showing and hiding on each click 
+  - handles keyboard focus
+
+Anchor positioning
+- the other thing it creates is an implicit anchor reference between our popover content and it's control
+- anchor positioning lets us position an item relative to its invoker
 - we only need to set the positioning of our popover since it's implicit
+- position-area, a 3x3 grid where we can tell it where we want it to go. define two options to put it squarely in that grid area, or you can say just one and the other will act like a span and fill the remaining space. 
 - to make an explicit relationship, we give the anchor itself a name, which like custom properties will start with two dashes. 
 - then the item we want to tether to our anchor needs to have a fixed or absolute position, and use the position-anchor property that provides the name of the anchor it's tied to
-- a good default way to position our element is using position-area, which works like a 3x3 grid where we can tell it where we want it to go. it works with physical or logical properties. you can define two options to put it squarely in that grid area, or you can say just one and the other will act like a span and fill the remaining space. 
-
-8
 -->
 
 ---
@@ -329,10 +335,11 @@ zoom: 0.8
 ---
 
 <!-- 
-active batch label
-careful NOT to click esc, might close something you don't want to lol
-
 6.5
+
+active batch label
+
+careful NOT to click esc, might close something you don't want to lol
 -->
 
 ---
@@ -393,13 +400,15 @@ html[data-view="detail"] {
 </style>
 
 <!--  
+3.5
+
 - same-document is what's baseline available, uses js to swap
 - cross-document is coming soon, supports multi page and uses css
+- works by the browser taking snapshots of the old/current page and the new/incoming page 
+- by default doing a cross fade, turning the old opacity down and the new one up
 - document.startViewTransition calls the function that should start the swap - important that the DOM changes  happen in here! if they happen before then the browser swaps new -> new and it doesn't look right
-- works by the browser taking snapshots of the old/current page and the new/incoming page, then by default doing a cross fade, turning the old opacity down and the new one up
-- can change this effect by using css animations to create your own
-
-4.5
+- view transition name to tell the browser what part will change
+- creates a psuedo-element tree, so you can access the old and new views
 -->
 
 
@@ -410,11 +419,11 @@ zoom: 0.8
 ---
 
 <!-- 
+2
+
 actively cooking transition swapping
 
 also remind what all we've covered - all these cool things that by default browsers bake in a11y and intention into our designs, needing less code from us to do what we want
-
-3
 -->
 
 ---
@@ -434,9 +443,11 @@ layout: statement
 </style>
 
 <!-- 
-*YOU DID IT LOVE!!!
+1
 
-2
+- intention matters
+- working with browser, not against it
+- css can do more than you might think
 -->
 
 ---
@@ -469,10 +480,7 @@ Thanks for taking this <span class="magic">magical</span> journey with me!
 </style>
 
 <!-- 
-put the direct link to the codebase (update the readme with links for the deployed versions of the slides and site)
-also direct link to the slides, since people might want that more (update the deployed version of the slides to use the deployed version of the site, so it actually works lol)
-then a link or qr code for your linkedin and just let folks connect there
-if you get the chance to update your personal site link that too, but otherwise LI is fine
+0
 
-1
+*YOU DID IT LOVE!!!
 -->
